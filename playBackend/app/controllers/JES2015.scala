@@ -18,27 +18,25 @@ object JES2015 extends Controller {
 
   
   def index = Action {
-    val form = new Jes2015Aligxilo(DatesScala, field => Seq.empty)
-    Ok(html.jes2015aligxilo(form)(f => FilledField(f, None, None)))
+    val form = new Jes2015Aligxilo(false, ScalaContext, field => Seq.empty)
+    Ok(html.jes2015aligxilo(form))
   }
 
   def submit = Action(parse.tolerantFormUrlEncoded) { implicit request =>
     val post = request.body
-    val form = new Jes2015Aligxilo(DatesScala, {field =>
+    val form = new Jes2015Aligxilo(true, ScalaContext, {field =>
       post.getOrElse(field, post.getOrElse(field+"[]", Nil))
     })
 
-    val parsed = form.parse(post)
-
-    parsed.validate match {
-      case SuccessValidation =>
-        val msg = html.jes2015_aligxilo_mesagxo(form)
-        sendMail( s"${parsed.fields(form.personaNomo).value.get} ${parsed.fields(form.familiaNomo).value.get}",
-          parsed.fields(form.retposxtadreso).value.get.toString, msg.body)
-        mongoInsert(parsed.data.map{field => field.name -> field.value}.toMap, form)
+    form.hasErrors match {
+      case true =>
+        Ok(html.jes2015aligxilo(form))
+      case false =>
+//        val msg = html.jes2015_aligxilo_mesagxo(form)
+//        sendMail( s"${parsed.fields(form.personaNomo).value.get} ${parsed.fields(form.familiaNomo).value.get}",
+//          parsed.fields(form.retposxtadreso).value.get.toString, msg.body)
+//        mongoInsert(parsed.data.map{field => field.name -> field.value}.toMap, form)
         Ok(html.jes2015_aligxilo_sukceso(form))
-      case f:FailureValidation =>
-        Ok(html.jes2015aligxilo(form)(field => parsed.fields(field)))
     }
   }
 
@@ -46,7 +44,7 @@ object JES2015 extends Controller {
     val mongoClient = MongoClient()
     val parsedMapped = parsed.mapValues {
       case Some(EnumOption(name, _)) => Some(name)
-      case Some(s: Set[(TableCheckBoxRow, TableCheckBoxCol)]) => Some(s.map {
+      case Some(s: Set[(TableCheckboxRow, TableCheckboxCol)]) => Some(s.map {
         case (r, c) => r.id -> c.id
       })
       case x => x

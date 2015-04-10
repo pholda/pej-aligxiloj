@@ -1,0 +1,16 @@
+@(implicit form: pl.pej.malpompaaligxilo.semajnfino.SemajnfinoAligxilo)
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PEJ Semajnfino - Aliĝilo | Formularz zapisowy</title>
+        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/bootstrap.min.css")" />
+        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/bootstrap-theme.min.css")" />
+        <link rel="stylesheet" href="@routes.Assets.at("jquery-ui-1.11.2.custom/jquery-ui.min.css")" />
+        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/semajnfino.css")" />
+    </head>
+<body>
+<i>[eo]</i> @{form.personaNomo.value.get}, dankon pro via aliĝo. Ĝis revido en Bjalistoko!<br />
+<i>[pl]</i> @{form.personaNomo.value.get}, dziękujemy za dokonanie zapisu. Do zobaczenia w Białymstoku!
+</body>
+</html>

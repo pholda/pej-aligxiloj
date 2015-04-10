@@ -1,17 +1,24 @@
 package pl.pej.malpompaaligxilo.semajnfino
 
 import pl.pej.malpompaaligxilo.form._
+import pl.pej.malpompaaligxilo.form.field.calculateField.CurrentDateField
 import pl.pej.malpompaaligxilo.form.field.{EnumOption, SelectField, EmailField, StringField}
-import pl.pej.malpompaaligxilo.util.{Dates, I18nString}
+import pl.pej.malpompaaligxilo.util.{NoI18nString, Dates, I18nString}
 
-class SemajnfinoAligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[String]) extends Form {
+case class SemajnfinoAligxilo(isFilled: Boolean, _getRawFieldValue: FieldName => Seq[String])(implicit val context: Context) extends Form {
   override def id: String = "semajnfinoAligxilo"
 
-  override protected def getRawFieldValue(fieldName: FieldName): Seq[String] = _getRawFieldValue(fieldName)
+  override protected def getRawFieldValue(field: Field[_]): Seq[String] =  _getRawFieldValue(field.name)
 
-  override def fields: List[Field[_]] = personaNomo :: familiaNomo :: retposxtadreso :: telefonnumero :: urbo ::
-    alveno :: esperanto :: komentoj :: Nil
+  override def fields: List[Field[_]] = currentDate :: personaNomo :: familiaNomo :: retposxtadreso :: telefonnumero :: urbo ::
+    ekskurso :: alveno :: esperanto :: komentoj :: Nil
 
+  val currentDate = Field(
+    name = "dato",
+    caption = NoI18nString(""),
+    visible = false,
+    `type` = CurrentDateField()
+  )
   val personaNomo = Field(
     name = "personaNomo",
     caption = I18nString(
@@ -57,12 +64,40 @@ class SemajnfinoAligxilo(val dates: Dates, val _getRawFieldValue: FieldName => S
     ),
     `type` = StringField()
   )
+  val ekskurso = Field(
+    name = "ekskurso",
+    caption = I18nString(
+      "eo" -> "Ekskurso",
+      "pl" -> "Wycieczka"
+    ),
+    description = Some(I18nString("eo" -> "nur informe", "pl" -> "tylko informacyjnie")),
+    `type` = SelectField(
+      options = List(
+        EnumOption("nenio", I18nString(
+          "eo" -> "mi ne scias/ne gravas",
+          "pl" -> "nie wiem/nie ważne"
+        )),
+        EnumOption("bjalistoko", I18nString(
+          "eo" -> "promenado tra Bjalistoko, vizito en la historia muzeo",
+          "pl" -> "spacer po Białymstoku, wizyta w muzeum historycznym"
+        )),
+        EnumOption("suprasl", I18nString(
+          "eo" -> "promenado tra Bjalistoko kaj Supraśl",
+          "pl" -> "spacer po Białymstoku i wizyta w Supraślu"
+        ))
+      )
+    )
+  )
   val alveno = Field(
     name = "alveno",
     caption = I18nString(
-      "eo" -> "Kiel kaj kiam vi alvenos?",
-      "pl" -> "Kiedy i jak zamierzasz przyjechać?"
+      "eo" -> "Kiel kaj kiam vi alvenos kaj foriros?",
+      "pl" -> "Kiedy i jak zamierzasz przyjechać i wyjechać?"
     ),
+    description = Some(I18nString(
+      "eo" -> "Tiu informo helpos al la organizantoj i.a. precizigi la programon",
+      "pl" -> "Ta informacja pomoże organizatorom m.in. sprecyzowac program"
+    )),
     `type` = StringField(textarea = true)
   )
   val esperanto = Field(
@@ -81,12 +116,12 @@ class SemajnfinoAligxilo(val dates: Dates, val _getRawFieldValue: FieldName => S
   val komentoj = Field(
     name = "komentoj",
     caption = I18nString(
-      "eo" -> "Komentoj",
-      "pl" -> "Komentarze"
+      "eo" -> "Komentoj, kontribuoj",
+      "pl" -> "Komentarze, wkład"
     ),
     description = Some(I18nString(
-      "eo" -> "Io ajn, ekz. programero kiun vi ŝatus okazigi",
-      "pl" -> "Cokolwiek, np. program który byś chciał poprowadzić (krótka prezentacja itp.)"
+      "eo" -> "Ekz. kontribuo al programo - preleg(et)o, disktrondo - kion vi ŝatus",
+      "pl" -> "Np. Twój wkład w program - (krótka) prezentacja, dyskusja itp"
     )),
     `type` = StringField(textarea = true)
   )

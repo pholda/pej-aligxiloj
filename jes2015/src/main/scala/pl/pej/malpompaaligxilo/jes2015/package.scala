@@ -213,7 +213,7 @@ package object jes2015 {
         "gq" -> I18nString("eo" -> "Ekvatora Gvineo"),
         "gr" -> I18nString("eo" -> "Grekio"),
         "ss" -> I18nString("eo" -> "Sud-Sudano")
-      ).sortBy(_.caption("eo"))(pl.pej.util.Esperanto.ordering),
+      ).sortBy(_.caption("eo"))(pl.pej.util.EsperantoOrdering.ordering),
       notSelected = Some(EnumOption("nenio", I18nString("eo" -> "bv. elekti landon")))
     )
   )

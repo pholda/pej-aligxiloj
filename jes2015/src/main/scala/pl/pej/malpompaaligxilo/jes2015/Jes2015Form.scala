@@ -3,8 +3,8 @@ package pl.pej.malpompaaligxilo.jes2015
 import org.scalajs.dom
 import org.scalajs.dom.Element
 import org.scalajs.jquery.jQuery
-import pl.pej.malpompaaligxilo.form.Field
-import pl.pej.malpompaaligxilo.form.field.CalculateField
+import pl.pej.malpompaaligxilo.form.{JSContext, Field}
+import pl.pej.malpompaaligxilo.form.field.{CustomCalculateField, CalculateField}
 import pl.pej.malpompaaligxilo.util.DatesJS
 
 import scala.collection.mutable.ListBuffer
@@ -14,7 +14,7 @@ import scala.scalajs.js.annotation.JSExport
 import scala.util.Try
 
 object Jes2015Form extends JSApp {
-  private val form = new Jes2015Aligxilo(DatesJS, {field =>
+  def _form(filled: Boolean) = new Jes2015Aligxilo(filled, JSContext, {field =>
     Try{
       if (jQuery(s"[name=$field]").is("[type=checkbox]")) {
         jQuery(s"[name=$field]").is(":checked") match {
@@ -39,9 +39,10 @@ object Jes2015Form extends JSApp {
 
   @JSExport
   def main(): Unit = {
+    val form = _form(false)
 
     lazy val calculableField = form.fields.collect{
-      case f@Field(_, _, CalculateField(_), _, _, _, _, _, _) => f
+      case f@Field(_, _, CustomCalculateField(_), _, _, _, _, _, _) => f
     }
 
     def refresh() {
@@ -59,10 +60,10 @@ object Jes2015Form extends JSApp {
       }
 
       calculableField.foreach{
-        case Field(name, _, CalculateField(formula), _, _, _, _, _, _) =>
+        case Field(name, _, CustomCalculateField(formula), _, _, _, _, _, _) =>
           try {
             jQuery(s".formExpression[data-name='$name']").html(formula(form) match {
-              case d: js.prim.Number => d.toFixed(2)
+//              case d: js.Number => d.toFixed(2)
               case x => x.toString
             })
           } catch {

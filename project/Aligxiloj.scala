@@ -1,54 +1,53 @@
+
+import org.scalajs.sbtplugin.ScalaJSPlugin
+import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import sbt._
 import Keys._
-import scalajs.sbtplugin.ScalaJSPlugin._
 
 object Aligxiloj extends Build {
+  val maVersion = "0.1.1-SNAPSHOT"
+
   val defaults = Defaults.coreDefaultSettings ++ List(
     organization := "pl.pej.aligxiloj",
     version := "0.1-SNAPSHOT",
-    scalaVersion := "2.11.1",
+    scalaVersion := "2.11.5",
     libraryDependencies ++= List(
       "org.scalatest" % "scalatest_2.11" % "2.2.3" % "test",
-      "pl.pej.malpompaaligxilo" %% "core" % "0.1-SNAPSHOT"
+      "pl.pej.malpompaaligxilo" %% "core_sjs0.6" % maVersion
     )
   )
 
-  lazy val root = Project(id = "aligxiloj",
+  lazy val root = Project(id = "pej-aligxiloj",
     base = file("."),
-    settings = Defaults.defaultSettings ++ List(
-      name := "aligxiloj",
-      scalaVersion := "2.11.1",
+    settings = defaults ++ List(
+      name := "pej-aligxiloj",
       publishArtifact := false
     )
   ).aggregate(jes2015, playBackend, semajnfino)
 
   lazy val jes2015 = Project(id = "jes2015",
     base = file("jes2015"),
-    settings = defaults ++ scalaJSSettings ++ List(
+    settings = defaults ++ List(
       name := "jes2015",
       libraryDependencies ++= Seq(
-        "org.scala-lang.modules.scalajs" %%% "scalajs-jquery" % "0.6",
-        "pl.pej.malpompaaligxilo" %%% "scalajs" % "0.1-SNAPSHOT",
+        "be.doeraene" %%% "scalajs-jquery" % "0.8.0",
         "joda-time" % "joda-time" % "2.0",
         "com.github.nscala-time" %% "nscala-time" % "1.6.0"
-      ),
-      skip in ScalaJSKeys.packageJSDependencies := false
+      )//,
+//      skip in ScalaJSKeys.packageJSDependencies := false
     )
-  )
+  ).enablePlugins(ScalaJSPlugin)
 
   lazy val semajnfino = Project(id = "semajnfino",
     base = file("semajnfino"),
-    settings = defaults ++ scalaJSSettings ++ List(
-      name := "semajnfino",
-      libraryDependencies ++= Seq(
-        "org.scala-lang.modules.scalajs" %%% "scalajs-jquery" % "0.6",
-        "pl.pej.malpompaaligxilo" %%% "scalajs" % "0.1-SNAPSHOT",
-        "joda-time" % "joda-time" % "2.0",
-        "com.github.nscala-time" %% "nscala-time" % "1.6.0"
-      ),
-      skip in ScalaJSKeys.packageJSDependencies := false
+    settings = defaults ++ List(
+      name := "semajnfino"//,
+//      libraryDependencies ++= Seq(
+//        "joda-time" % "joda-time" % "2.0"
+//      )//,
+//      skip in ScalaJSKeys.packageJSDependencies := false
     )
-  ).dependsOn()
+  ).dependsOn().enablePlugins(ScalaJSPlugin)
 
   lazy val playBackend = Project(
     id = "playBackend",
@@ -59,7 +58,9 @@ object Aligxiloj extends Build {
         "com.typesafe.play.plugins" %% "play-plugins-mailer" % "2.3.6-SNAPSHOT",
         "org.mongodb" %% "casbah" % "2.7.4",
         "joda-time" % "joda-time" % "2.0",
-        "com.github.nscala-time" %% "nscala-time" % "1.6.0"
+        "com.github.nscala-time" %% "nscala-time" % "1.6.0",
+        "pl.pej.malpompaaligxilo" %% "twirl-templates" % maVersion,
+        "pl.pej.malpompaaligxilo" %% "google-api" % maVersion
       )
     )
   ).dependsOn(jes2015, semajnfino).enablePlugins(play.PlayScala)

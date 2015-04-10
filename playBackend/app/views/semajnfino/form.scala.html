@@ -1,0 +1,55 @@
+@(implicit form: pl.pej.malpompaaligxilo.semajnfino.SemajnfinoAligxilo)
+@import views.html.malpompaaligxilo.pleoField
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PEJ Semajnfino - Aliĝilo | Formularz zapisowy</title>
+        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/bootstrap.min.css")" />
+        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/bootstrap-theme.min.css")" />
+        <link rel="stylesheet" href="@routes.Assets.at("jquery-ui-1.11.2.custom/jquery-ui.min.css")" />
+        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/semajnfino.css")" />
+    </head>
+    <body>
+        <script type="text/javascript" src="@routes.Assets.at("jquery-ui-1.11.2.custom/jquery-ui.min.js")"></script>
+        <script type="text/javascript">
+        $(function(){
+        $('input[type=text].formDate' ).each(function() {
+        $(this).datepicker({
+        "dateFormat": "yy-mm-dd",
+        changeMonth: true,
+        changeYear: true,
+        minDate: $(this).data("mindate"),
+        maxDate: $(this).data("maxdate"),
+        yearRange: $(this).data("yearrange")
+        });
+        })})
+
+        </script>
+
+        @*<script type="text/javascript" src="/assets/javascripts/jes2015-fastopt.js"></script>*@
+        <form id="aligxilo" action="@routes.Semajnfino.submit()" method="post" class="form-horizontal">
+            <div class="row">
+                <h1>PEJ Semajnfino - Aliĝilo | Formularz zapisowy</h1>
+            </div>
+            @pleoField(form.personaNomo)
+            @pleoField(form.familiaNomo)
+            @pleoField(form.retposxtadreso)
+            @pleoField(form.telefonnumero)
+            @pleoField(form.urbo)
+            @pleoField(form.alveno)
+            @pleoField(form.ekskurso)
+            @pleoField(form.esperanto)
+            @pleoField(form.komentoj)
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="submit" value="aliĝu | zapisz się" name="sendu" class="btn btn-default" />
+                </div>
+            </div>
+        </form>
+        <div class="plendu">Aliĝilo starigita per&nbsp;<em>MalpompaAliĝilo</em>. Bv.&nbsp;sendi plendojn al piotr.holda&nbsp;ĈE&nbsp;pej.pl&nbsp;.</div>
+        <script type="text/javascript">
+        pl.pej.malpompaaligxilo.jes2015.Jes2015Form().main();
+        </script>
+    </body>
+</html>

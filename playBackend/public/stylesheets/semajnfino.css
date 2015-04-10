@@ -1,0 +1,22 @@
+#aligxilo {
+    margin: 30px auto 30px;
+    width: 80%;
+    min-width: 400px;
+}
+
+#aligxilo dd {
+    font-weight: normal;
+}
+
+#aligxilo input[type=checkbox] {
+    width: auto;
+}
+
+.plendu {
+    padding: 5px;
+    text-align: right;
+}
+
+.error {
+    color: #ff0000;
+}

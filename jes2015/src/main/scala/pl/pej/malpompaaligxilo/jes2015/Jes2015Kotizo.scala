@@ -30,7 +30,7 @@ object Jes2015Kotizo {
     val invitletero = 5
   }
 
-  def kotizo(form: Jes2015Aligxilo) = {
+  def kotizo(implicit form: Jes2015Aligxilo) = {
     lazy val rabataMultiplikanto: Double = {
       (1 - frualigxaRabato) * (1 - studentaRabato)
     }
@@ -39,8 +39,8 @@ object Jes2015Kotizo {
 
     def frualigxaRabato: Double = {
 
-      if (form.getFieldValue(form.invitilo).exists(_.value == "jes")) {
-        val pagoElekto: String = form.getFieldValue(form.miPagos).get.value
+      if (invitilo.value.exists(_.value == "jes")) {
+        val pagoElekto: String = miPagos.value.get.value
         println(pagoElekto)
 
         val currentDate = form.dates.getNowMillis
@@ -56,7 +56,7 @@ object Jes2015Kotizo {
           case "tuton" => aligxkategorioRabato
         }
       } else {
-        val pagoElekto: String = form.getFieldValue(form.miPagosGxis).get.value
+        val pagoElekto: String = miPagosGxis.value.get.value
 
         pagoElekto match {
           case "rabato30" => 0.3
@@ -68,19 +68,19 @@ object Jes2015Kotizo {
       }
     }
 
-    lazy val studento_? = form.getFieldValue(form.studento) == Some(true)
+    lazy val studento_? = studento.value == Some(true)
 
     def studentaRabato: Double = {
       if(studento_?) Prezoj.studentaRabato  else 0
     }
 
-    lazy val cxeesto: Set[String] = form.getFieldValue(form.cxeestoElekto).get.map{
+    lazy val cxeesto: Set[String] = cxeestoElekto.value.get.map{
       case (row, col) => row.id
     }.toSet
 
     lazy val noktoj: Int = {
 
-      if (form.getFieldValue(form.cxeesto).exists(_.value == "cxiun")) {
+      if (form.cxeesto.value.exists(_.value == "cxiun")) {
         7
       } else {
         cxeesto("27/28").toInt + cxeesto("28/29").toInt + cxeesto("29/30").toInt + cxeesto("30/31").toInt + cxeesto("31/1").toInt + cxeesto("1/2").toInt + cxeesto("2/3").toInt
@@ -89,14 +89,14 @@ object Jes2015Kotizo {
 
     lazy val programo: Map[String, Euroj] = {
 
-      val naskiita = form.dates.str2millis(form.getFieldValue(form.naskigxdato).get)
+      val naskiita = form.dates.str2millis(naskigxdato.value.get.toString)
 
       val agxKategorio = if(naskiita > form.dates.str2millis("2000-12-26")) 0
       else if(naskiita > form.dates.str2millis("1985-12-26")) 1
       else 2
 
 
-      val lando = form.getFieldValue(form.lando).get.value
+      val lando = form.lando.value.get.value
 
       val aLandoj = Seq("ad", "at", "bh", "be", "gb", "dk", "fi", "fr", "de", "ie", "is", "il", "it", "jp", "ca", "qa", "kw", "li", "lu", "mc", "nl", "no", "om", "sm", "sa", "se", "ch", "ae", "us")
 
@@ -112,9 +112,9 @@ object Jes2015Kotizo {
 
     val mangxado: Map[String, Euroj] = {
 
-      val matenmangxo: Boolean = form.getFieldValue(form.matenmangxoj).getOrElse(false)
-      val tagmangxo: Boolean = form.getFieldValue(form.tagmangxoj).getOrElse(false)
-      val vespermangxo: Boolean = form.getFieldValue(form.vespermangxoj).getOrElse(false)
+      val matenmangxo: Boolean = form.matenmangxoj.value.getOrElse(false)
+      val tagmangxo: Boolean = form.tagmangxoj.value.getOrElse(false)
+      val vespermangxo: Boolean = form.vespermangxoj.value.getOrElse(false)
 
       val kiomMatenmangxoj = noktoj
       val kiomTagmangxoj = math.max(0, noktoj - 1)
@@ -131,7 +131,7 @@ object Jes2015Kotizo {
 
     val logxado: Map[String, Euroj] = {
 
-      val logxelekto = form.getFieldValue(form.logxado).get.value
+      val logxelekto = form.logxado.value.get.value
 
       val prezoSendusxejo = Prezoj.tranoktoSendusxeja * rabataMultiplikanto
       val prezoAmasejo = Prezoj.tranoktoAmasejo * rabataMultiplikanto
@@ -165,14 +165,14 @@ object Jes2015Kotizo {
 
     val invitletero: Map[String, Euroj] = {
 
-      val invitletero_? : Boolean = getFieldValue(invitilo).exists(_.value == "jes")
+      val invitletero_? : Boolean = invitilo.value.exists(_.value == "jes")
 
       Map(s"Invitletero" -> Prezoj.invitletero * (if(invitletero_?) 1 else 0))
     }
 
     val imposto: ListMap[String, Euroj] = {
 
-      val naskiita = form.dates.str2millis(form.getFieldValue(form.naskigxdato).get)
+      val naskiita = form.dates.str2millis(form.naskigxdato.value.get.toString)
 
       if(naskiita > form.dates.str2millis("1997-12-26"))
         ListMap(
@@ -182,7 +182,7 @@ object Jes2015Kotizo {
     }
 
     val donaco: ListMap[String, Euroj] = {
-      val kvoto = getFieldValue(donacoKvoto).getOrElse(0)
+      val kvoto = donacoKvoto.value.getOrElse(0)
       kvoto match {
         case s if s > 0 =>
           ListMap(

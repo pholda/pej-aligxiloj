@@ -1,18 +1,18 @@
 package pl.pej.malpompaaligxilo.jes2015
 
 import pl.pej.malpompaaligxilo.form._
-import pl.pej.malpompaaligxilo.form.errors.OtherError
+import pl.pej.malpompaaligxilo.form.errors.CustomError
 import pl.pej.malpompaaligxilo.form.field._
-import pl.pej.malpompaaligxilo.util.{Dates, NoI18nString, I18nString}
+import pl.pej.malpompaaligxilo.util.{Date, Dates, NoI18nString, I18nString}
+import pl.pej.malpompaaligxilo.form.field.TableCheckboxField.{tuple2col, tuple2row}
 
 import scala.util.Try
 
-class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[String]) extends Form {
-  import TableCheckBoxField._
+class Jes2015Aligxilo(val isFilled: Boolean, val context: Context, val _getRawFieldValue: FieldName => Seq[String]) extends Form {
 
   override def id: String = "aligxilo"
 
-  override def getRawFieldValue(fieldName: FieldName): Seq[String] = _getRawFieldValue(fieldName)
+  override protected def getRawFieldValue(field: Field[_]): Seq[String] = _getRawFieldValue(field.name)
 
   override def fields: List[Field[_]] =
     personaNomo :: familiaNomo :: kromnomo :: naskigxdato :: sub18 :: genro :: retposxtadreso :: tujmesagxilo ::
@@ -69,18 +69,18 @@ class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[
     name = "sub18",
     caption = NoI18nString(""),
     visible = {form =>
-      form.getFieldValue(naskigxdato) match {
-        case Some(str: String) =>
+      form.fieldValue(naskigxdato) match {
+        case Some(date: Date) =>
           Try{
             val unuantagon18jaroj = form.dates.str2millis("1997-12-27")
-            unuantagon18jaroj < form.dates.str2millis(str)
+            unuantagon18jaroj < form.dates.str2millis(date.toString)
           }.getOrElse(false)
         case _ => false
       }
     },
     store = false,
-    `type` = CalculateField[String]{form =>
-      "Vi estos sub 18 dum la JES, vi bezonas sendi skanitan gepatran permesilon al la organizantoj pri via partopreno, se vi venos sole al la renkontiĝo."
+    `type` = CustomCalculateField[String]{form =>
+      Some("Vi estos sub 18 dum la JES, vi bezonas sendi skanitan gepatran permesilon al la organizantoj pri via partopreno, se vi venos sole al la renkontiĝo.")
     }
   )
   val genro = Field(
@@ -177,27 +177,36 @@ class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[
   val pasportnumero = Field(
     name = "pasportnumero",
     caption = I18nString("eo" -> "Numero de pasporto"),
-    visible = _.getFieldValue(invitilo).exists(_.value == "jes"),
+    visible = {implicit form =>
+      invitilo.value.exists(_.value == "jes")
+    },
     `type` = StringField()
   )
   val pasportovalideco = Field(
     name = "pasportovalideco",
     caption = I18nString("eo" -> "Valideco de pasporto"),
-    visible = _.getFieldValue(invitilo).exists(_.value == "jes"),
+    visible = {implicit form =>
+      invitilo.value.exists(_.value == "jes")
+    },
     `type` = DateField(yearRange = Some("2015:2035"))
   )
   val invitiloAdreso = Field(
     name = "invitiloAdreso",
     caption = I18nString("eo" -> "Adreso"),
     description = Some(I18nString("eo" -> "Adreso por sendi la invitilon.")),
-    visible = _.getFieldValue(invitilo).exists(_.value == "jes"),
+    visible = {implicit form =>
+      invitilo.value.exists(_.value == "jes")
+    },
     `type` = StringField(textarea = true)
   )
+  
+  
+  
   val adresaro = Field(
     name = "adresaro",
     caption = I18nString("eo" -> "Adresaro"),
     description = Some(I18nString("eo" -> "Post la aranĝo ni sendas al la partoprenantoj adresaron. Ĉu vi ŝatus aperi en ĝi? Se jes, kun kiuj datumoj?")),
-    `type` = TableCheckBoxField(
+    `type` = TableCheckboxField(
       cols = List("jes" -> NoI18nString("jes")),
       rows = List(
         "personaNomo" -> I18nString("eo" -> "Persona Nomo"),
@@ -233,7 +242,9 @@ class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[
     caption = I18nString(
       "eo" -> "Ĉu via ĉambro rajtas esti gea?"
     ),
-    visible = _.getFieldValue(logxado).forall(_.value != "memzorge"),
+    visible = {implicit form =>
+      logxado.value.forall(_.value != "memzorge")
+    },
     `type` = SelectField(
       options = List(
         EnumOption("ne", I18nString("eo" -> "ne")),
@@ -246,7 +257,9 @@ class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[
     caption = I18nString(
       "eo" -> "Mi preferas loĝi en … ĉambro."
     ),
-    visible = _.getFieldValue(logxado).forall(_.value != "memzorge"),
+    visible = {implicit form =>
+      logxado.value.forall(_.value != "memzorge")
+    },
     `type` = SelectField(
       options = List(
         EnumOption("egalas", I18nString("eo" -> "egalas")),
@@ -260,7 +273,9 @@ class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[
     caption = I18nString(
       "eo" -> "Mi preferus loĝi kun…"
     ),
-    visible = _.getFieldValue(logxado).forall(_.value != "memzorge"),
+    visible = {implicit form =>
+      logxado.value.forall(_.value != "memzorge")
+    },
     `type` = StringField()
   )
   val cxeesto = Field(
@@ -276,8 +291,10 @@ class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[
     name = "cxeestoElekto",
     caption = I18nString("eo" -> ""),
     description = Some(I18nString("eo" -> "Bv. indiki la TRANOKTOJN kiam vi partoprenos.")),
-    visible = _.getFieldValue(cxeesto).exists(_.value == "elekto"),
-    `type` = TableCheckBoxField(
+    visible = {implicit form =>
+      cxeesto.value.exists(_.value == "elekto")
+    },
+    `type` = TableCheckboxField(
       cols = List("jes" -> NoI18nString("jes")),
       rows = List(
         "27/28" -> NoI18nString("27/28"),
@@ -328,13 +345,13 @@ class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[
       "eo" -> "Manĝtipo por la silvestra balo"
     ),
     description = Some(I18nString("eo" -> "Se vi estas memzorganto, ni bezonas scii vian kutiman manĝtipon por la silvestra balo.")),
-    visible = { form =>
-      (form.getFieldValue("matenmangxoj").asInstanceOf[Option[Boolean]]!= Some(true) &&
-        form.getFieldValue("vespermangxoj").asInstanceOf[Option[Boolean]]!= Some(true) &&
-        form.getFieldValue("tagmangxoj").asInstanceOf[Option[Boolean]] != Some(true)) && {
-        def x = form.getFieldValue("cxeestoElekto").asInstanceOf[Option[Set[(TableCheckBoxRow, TableCheckBoxCol)]]].getOrElse(Set.empty)
+    visible = {implicit form =>
+      (matenmangxoj.value != Some(true) &&
+        vespermangxoj.value != Some(true) &&
+        tagmangxoj.value != Some(true)) && {
+        def x = cxeestoElekto.value.getOrElse(Set.empty)
 
-        form.getFieldValue(cxeesto).exists(_.value == "cxiun") ||
+        cxeesto.value.exists(_.value == "cxiun") ||
           x.exists(_._1.id == "31/1")
       }
     },
@@ -345,7 +362,9 @@ class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[
     caption = I18nString(
       "eo" -> "Mi preferas matenmanĝi…"
     ),
-    visible = _.getFieldValue("matenmangxoj").asInstanceOf[Option[Boolean]] == Some(true),
+    visible = { implicit form =>
+      matenmangxoj.value == Some(true)
+    },
     `type` = SelectField(
       options = List(
         EnumOption("ne_gravas", I18nString("eo" -> "ne gravas")),
@@ -357,10 +376,10 @@ class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[
   val mangxtipo = Field(
     name = "mangxtipo",
     caption = I18nString("eo" -> "Mi volas manĝi…"),
-    visible = {form =>
-      form.getFieldValue(matenmangxoj) == Some(true) ||
-      form.getFieldValue(vespermangxoj) == Some(true) ||
-      form.getFieldValue(tagmangxoj) == Some(true)
+    visible = {implicit form =>
+      matenmangxoj.value == Some(true) ||
+      vespermangxoj.value == Some(true) ||
+      tagmangxoj.value == Some(true)
     },
     `type` = SelectField(
       options = List(
@@ -375,10 +394,10 @@ class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[
     name = "mangxtipoKlarigo",
     caption = NoI18nString(""),
     description = Some(I18nString("eo" -> "Baze temas pri alergio aŭ trosentemo, ekz. kontraŭ gluteno k.s. Bv. do ĉi tie vortigi, kial kaj kian specialan manĝon vi bezonas.")),
-    visible = {form: Form =>
-      ( form.getFieldValue(matenmangxoj) == Some(true) ||
-        form.getFieldValue(vespermangxoj) == Some(true) ||
-        form.getFieldValue(tagmangxoj) == Some(true) ) && form.getFieldValue(mangxtipo).exists(_.value == "speciale")
+    visible = {implicit form: Form =>
+      ( matenmangxoj.value == Some(true) ||
+        vespermangxoj.value == Some(true) ||
+        tagmangxoj.value == Some(true) ) && mangxtipo.value.exists(_.value == "speciale")
     },
     `type` = StringField()
   )
@@ -386,12 +405,12 @@ class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[
     name = "mangxtipo2",
     caption = I18nString("eo" -> "Mi volas havi…"),
     description = Some(I18nString("eo" -> "Ni planas la menuon laŭ la respondoj, tio estas nur por informiĝi, vi ne nepre ricevos laŭ via elekto")),
-    visible = { form =>
-      form.getFieldValue(mangxtipo).exists(_.value == "viande") &&
+    visible = {implicit form =>
+      mangxtipo.value.exists(_.value == "viande") &&
         (
-          form.getFieldValue(matenmangxoj) == Some(true) ||
-            form.getFieldValue(vespermangxoj) == Some(true) ||
-            form.getFieldValue(tagmangxoj) == Some(true)
+          matenmangxoj.value == Some(true) ||
+            vespermangxoj.value == Some(true) ||
+            tagmangxoj.value == Some(true)
           )
     },
     `type` = SelectField(
@@ -404,18 +423,18 @@ class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[
   val ludejoKontribuo = Field(
     name = "ludejoKontribuo",
     caption = I18nString("eo" -> "Mi kontribuos al la ludejo per"),
-    `type` = TableCheckBoxField(
+    `type` = TableCheckboxField(
       rows = List(
-        TableCheckBoxRow(
+        TableCheckboxRow(
           "kunporti-ludilojn",
           I18nString("eo" -> "Mi pretas kunporti mia(j)n plej ŝatata(j)n ludilojn por la ludejo.")
         ),
-        TableCheckBoxRow(
+        TableCheckboxRow(
           "lud-sesio",
           I18nString("eo" -> "Mi pretas gvidi ludsesiojn en la ludejo.")
         )
       ),
-      cols = List(TableCheckBoxCol("jes", NoI18nString("jes")))
+      cols = List(TableCheckboxCol("jes", NoI18nString("jes")))
     )
   )
   val ludiMuzikilon = Field(
@@ -429,8 +448,10 @@ class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[
   val kielLudos = Field(
     name = "kielLudos",
     caption = I18nString("eo" -> "Kiel vi volonte uzus vian kantkapablon / muzikilon?"),
-    visible = _.getFieldValue(ludiMuzikilon).exists(_.value == "jes"),
-    `type` = TableCheckBoxField(
+    visible = {implicit form =>
+      ludiMuzikilon.value.exists(_.value == "jes")
+    },
+    `type` = TableCheckboxField(
       cols = List("jes" -> NoI18nString("jes")),
       rows = List(
         "mi-ludus" -> I18nString("eo" -> "Mi ne certas, sed mi volonte ludus aŭ sole, aŭ kune kun kelkaj aliaj dum la semajno"),
@@ -446,13 +467,17 @@ class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[
     caption = I18nString("eo" -> "Detaloj de artisto/muzikgrupo"),
     description = Some(I18nString("eo" -> "Nomo, kiom longe la koncerto daŭros, kiajn teĥnikaĵojn vi bezonas ktp.")),
     `type` = StringField(textarea = true),
-    visible = _.getFieldValue(kielLudos).exists(_.exists{case (r,c) => c.id == "mi-koncertus-vespere"})
+    visible = {implicit form =>
+      kielLudos.value.exists(_.exists{case (r,c) => c.id == "mi-koncertus-vespere"})
+    }
   )
   val miKunportos = Field(
     name = "miKunportos",
     caption = I18nString("eo" -> "Kiun muzikilon vi kunportos"),
-    visible = _.getFieldValue(ludiMuzikilon).exists(_.value == "jes"),
-    `type` = TableCheckBoxField(
+    visible = {implicit form =>
+      ludiMuzikilon.value.exists(_.value == "jes")
+    },
+    `type` = TableCheckboxField(
       cols = List("jes" -> NoI18nString("jes")),
       rows = List(
         "gitaro" -> I18nString("eo" -> "Gitaro"),
@@ -468,18 +493,18 @@ class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[
   val dejxoriHelpo = Field(
     name = "dejxoriHelpo",
     caption = I18nString("eo" -> "Mi proponas"),
-    `type` = TableCheckBoxField(
+    `type` = TableCheckboxField(
       rows = List(
-        TableCheckBoxRow(
+        TableCheckboxRow(
           "dejxori-gufujo",
           I18nString("eo" -> "deĵori en la gufujo")
         ),
-        TableCheckBoxRow(
+        TableCheckboxRow(
           "dejxori-trinkejo",
           I18nString("eo" -> "deĵori en la trinkejo")
         )
       ),
-      cols = List(TableCheckBoxCol("jes", NoI18nString("jes")))
+      cols = List(TableCheckboxCol("jes", NoI18nString("jes")))
     )
   )
   val gxeneralaHelpado = Field(
@@ -524,16 +549,18 @@ class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[
     name = "donacoKialoKlarigo",
     caption = NoI18nString(""),
     description = Some(I18nString("eo" -> "Bv klarigi.")),
-    visible = _.getFieldValue(donacoKialo).exists(_.value == "alia"),
+    visible = {implicit form =>
+      donacoKialo.value.exists(_.value == "alia")
+    },
     `type` = StringField()
   )
   val kotizo = Field(
     name = "kotizo",
     caption = I18nString("eo" -> "Kalkulita kotizo"),
     description = Some(I18nString("eo" -> "En eŭroj")),
-    `type` = new CalculateField[Kotizo](
-      formula = {f => Jes2015Kotizo.kotizo(f.asInstanceOf[Jes2015Aligxilo])}
-    )
+    `type` = CustomCalculateField[Kotizo]{f =>
+      Some(Jes2015Kotizo.kotizo(f.asInstanceOf[Jes2015Aligxilo]))
+    }
   )
   val miPagos = Field(
     name = "miPagos",
@@ -556,7 +583,9 @@ class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[
       EnumOption("rabato12", I18nString("eo" -> "antaŭpago ĝis 30.11, pago* ĝis 30.11 (12% rabato)")),
       EnumOption("rabato0", I18nString("eo" -> "decembre"))
     )),
-    visible = !_.getFieldValue(invitilo).exists(_.value == "jes")
+    visible = {implicit form =>
+      !invitilo.value.exists(_.value == "jes")
+    }
   )
   val miPagosGxisAlt = Field(
     name = "miPagosGxisAlt",
@@ -567,7 +596,9 @@ class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[
       EnumOption("antaupago", I18nString("eo" -> "ŭuj antaŭpagos 20 eŭrojn, la reston decembre")),
       EnumOption("tuton", I18nString("eo" -> "pagos la tuton kaj ricevos rabaton"))
     )),
-    visible = _.getFieldValue(invitilo).exists(_.value == "jes")
+    visible = {implicit form =>
+      invitilo.value.exists(_.value == "jes")
+    }
   )
   val komento = Field(
     name = "komento",
@@ -582,7 +613,7 @@ class Jes2015Aligxilo(val dates: Dates, val _getRawFieldValue: FieldName => Seq[
     `type` = CheckboxField(),
     customValidate = {v: Boolean =>
       if (!v)
-        Some(OtherError(I18nString("eo" -> "vi devas akcepti la regularon!")))
+        Some(new CustomError(I18nString("eo" -> "vi devas akcepti la regularon!")))
       else
         None
     }

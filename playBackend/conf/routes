@@ -3,9 +3,12 @@
 # ~~~~
 
 # Home page
-GET         /jes2015                controllers.JES2015.index
+GET         /jes2015               controllers.JES2015.index
 
 POST        /jes2015/submit        controllers.JES2015.submit
 
+GET         /semajnfino            controllers.Semajnfino.index
+POST        /semajnfino            controllers.Semajnfino.submit
+
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file           controllers.Assets.at(path="/public", file)
+GET         /assets/*file          controllers.Assets.at(path="/public", file)
