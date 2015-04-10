@@ -15,18 +15,18 @@ import play.api.mvc._
 import views._
 
 object JES2015 extends Controller {
-
+  implicit val context = ScalaContext
   
   def index = Action {
-    val form = new Jes2015Aligxilo(false, ScalaContext, field => Seq.empty)
+    val form = new Jes2015Aligxilo(field => Seq.empty)
     Ok(html.jes2015aligxilo(form))
   }
 
   def submit = Action(parse.tolerantFormUrlEncoded) { implicit request =>
     val post = request.body
-    val form = new Jes2015Aligxilo(true, ScalaContext, {field =>
-      post.getOrElse(field, post.getOrElse(field+"[]", Nil))
-    })
+    val form = new Jes2015Aligxilo({field =>
+      post.getOrElse(field.name, post.getOrElse(field+"[]", Nil))
+    }, isFilled = true)
 
     form.hasErrors match {
       case true =>

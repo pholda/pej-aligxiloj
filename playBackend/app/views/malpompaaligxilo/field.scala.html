@@ -9,7 +9,7 @@
         <dl>
             <dt>@field.caption(lang)@if(field.required){<span class="required"> *</span>}@if(field.caption(lang).nonEmpty){:}</dt>
             <dd>@if(field.description.nonEmpty){
-                <div class="fieldDesc">@field.description.get</div>
+                <div class="fieldDesc">@field.description.get.apply(lang)</div>
             }</dd>
             @if(form.isFilled && field.validate.nonEmpty){
                 <dd class="error">

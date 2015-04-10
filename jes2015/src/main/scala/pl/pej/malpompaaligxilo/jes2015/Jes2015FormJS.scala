@@ -13,8 +13,9 @@ import scala.scalajs.js.JSApp
 import scala.scalajs.js.annotation.JSExport
 import scala.util.Try
 
-object Jes2015Form extends JSApp {
-  def _form(filled: Boolean) = new Jes2015Aligxilo(filled, JSContext, {field =>
+object Jes2015FormJS extends JSApp {
+  implicit val context = JSContext
+  val form = new Jes2015Aligxilo({field =>
     Try{
       if (jQuery(s"[name=$field]").is("[type=checkbox]")) {
         jQuery(s"[name=$field]").is(":checked") match {
@@ -39,7 +40,6 @@ object Jes2015Form extends JSApp {
 
   @JSExport
   def main(): Unit = {
-    val form = _form(false)
 
     lazy val calculableField = form.fields.collect{
       case f@Field(_, _, CustomCalculateField(_), _, _, _, _, _, _) => f

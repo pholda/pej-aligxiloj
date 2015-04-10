@@ -8,11 +8,11 @@ import pl.pej.malpompaaligxilo.form.field.TableCheckboxField.{tuple2col, tuple2r
 
 import scala.util.Try
 
-class Jes2015Aligxilo(val isFilled: Boolean, val context: Context, val _getRawFieldValue: FieldName => Seq[String]) extends Form {
+class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Boolean = false)(implicit val context: Context) extends Form {
 
   override def id: String = "aligxilo"
 
-  override protected def getRawFieldValue(field: Field[_]): Seq[String] = _getRawFieldValue(field.name)
+  override protected def getRawFieldValue(field: Field[_]): Seq[String] = rawFieldValue(field)
 
   override def fields: List[Field[_]] =
     personaNomo :: familiaNomo :: kromnomo :: naskigxdato :: sub18 :: genro :: retposxtadreso :: tujmesagxilo ::
