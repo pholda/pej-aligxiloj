@@ -228,8 +228,7 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
     `type` = SelectField(
       options = List(
         EnumOption("2-lita-cxambro", I18nString("eo" -> "2/3 lita kun duŝejo")),
-        EnumOption("4-5-lita-cxambro-dusxejo", I18nString("eo" -> "4/5 lita kun duŝejo")),
-        EnumOption("6-lita-cxambro-dusxejo", I18nString("eo" -> "6 lita kun duŝejo")),
+        EnumOption("kundusxeja", I18nString("eo" -> "4/5/6 lita kun duŝejo")),
         EnumOption("4-lita-cxambro-sen-dusxejo", I18nString("eo" -> "4 lita sen duŝejo")),
 //        EnumOption("14-lita-cxambro-sen-dusxejo", I18nString("eo" -> "14 lita kun duŝejo en apuda konstruaĵo")),
         EnumOption("amaslogxejo-matraco", I18nString("eo" -> "amasloĝejo sur matraco")),
@@ -564,13 +563,16 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
   )
   val miPagos = Field(
     name = "miPagos",
-    caption = I18nString("eo" -> "Mi pagos"),
+    caption = I18nString("eo" -> "Ene de la nuna aliĝperiodo mi pagos.."),
     required = true,
     `type` = SelectField(List(
-      EnumOption("tuton", I18nString("eo" -> "tutan sumon")),
-      EnumOption("duonon", I18nString("eo" -> "duonon de la sumo"))
+      EnumOption("tuton", I18nString("eo" -> "tutan sumon por helpi en organizado kaj ĝui 5-eŭran rabaton")),
+      EnumOption("antaupagon", I18nString("eo" -> "nur necesan antaŭpagon (40 eŭr)"))
     ))
   )
+
+  /*
+   tio probable ne necesos
   val miPagosGxis = Field(
     name = "miPagosGxis",
     caption = I18nString("eo" -> "Mi pagos ĝis…"),
@@ -599,7 +601,7 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
     visible = {implicit form =>
       invitilo.value.exists(_.value == "jes")
     }
-  )
+  )*/
   val komento = Field(
     name = "komento",
     caption = I18nString("eo" -> "Komento"),
