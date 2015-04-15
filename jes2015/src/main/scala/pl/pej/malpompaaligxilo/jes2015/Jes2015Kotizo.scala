@@ -12,11 +12,11 @@ object Jes2015Kotizo {
     /** la nomoj ne spegulas precize la limdatojn,
       * sed tiel pli facile kompreni kaj eviti eraron
       */
-    val IJF = Seq(Seq(0,0,0),Seq(10,-25,-35),Seq(30,0,-10),Seq(70,50,20))
-    val IJS = Seq(Seq(0,0,0),Seq(20,-15,-25),Seq(40,10,0),Seq(80,60,30))
-    val finoDeSomero = Seq(Seq(0,0,0),Seq(30,-5,-15),Seq(50,20,10),Seq(90,70,40))
-    val novembro = Seq(Seq(0,0,0),Seq(40,10,0),Seq(60,30,20),Seq(100,80,60))
-    val decembro = Seq(Seq(0,0,0),Seq(60,30,20),Seq(80,50,40),Seq(120,100,80))
+    val IJF: Seq[Seq[Euroj]] = Seq(Seq(0,0,0),Seq(10,-25,-35),Seq(30,0,-10),Seq(70,50,20))
+    val IJS: Seq[Seq[Euroj]] = Seq(Seq(0,0,0),Seq(20,-15,-25),Seq(40,10,0),Seq(80,60,30))
+    val finoDeSomero: Seq[Seq[Euroj]]= Seq(Seq(0,0,0),Seq(30,-5,-15),Seq(50,20,10),Seq(90,70,40))
+    val novembro: Seq[Seq[Euroj]] = Seq(Seq(0,0,0),Seq(40,10,0),Seq(60,30,20),Seq(100,80,60))
+    val decembro: Seq[Seq[Euroj]] = Seq(Seq(0,0,0),Seq(60,30,20),Seq(80,50,40),Seq(120,100,80))
 
 
     val matenmangxo: Euroj = 4
@@ -33,6 +33,8 @@ object Jes2015Kotizo {
     val imposxto: Euroj = 1.5
 
     val invitletero: Euroj = 5
+
+    val balo: Seq[Euroj] = Seq(0, 10, 15, 30)
 
     /** (rabato) */
     val tutaPagoGxisFinoDeSomero: Euroj = 5
@@ -62,12 +64,13 @@ object Jes2015Kotizo {
     }
 
     lazy val programo: Map[String, Euroj] = {
+      val currentDate = form.dates.getNowMillis
 
-      val aligxkategoriajPrezoj: Seq[Seq[Euroj]] = if(currentDate < form.dates.str2millis("2015-04-30")) IJF
-      else if (currentDate < form.dates.str2millis("2015-06-30")) IJS
-      else if (currentDate < form.dates.str2millis("2015-08-31")) finoDeSomero
-      else if (currentDate < form.dates.str2millis("2015-10-31")) novembro
-      else decembro
+      val aligxkategoriajPrezoj: Seq[Seq[Euroj]] = if(currentDate < form.dates.str2millis("2015-04-30")) Prezoj.IJF
+      else if (currentDate < form.dates.str2millis("2015-06-30")) Prezoj.IJS
+      else if (currentDate < form.dates.str2millis("2015-08-31")) Prezoj.finoDeSomero
+      else if (currentDate < form.dates.str2millis("2015-10-31")) Prezoj.novembro
+      else Prezoj.decembro
 
       val naskiita = form.dates.str2millis(naskigxdato.value.get.toString)
 
@@ -98,7 +101,7 @@ object Jes2015Kotizo {
 
       val kiomMatenmangxoj = noktoj
       val kiomTagmangxoj = math.max(0, noktoj - 1)
-      val kiomVespermangxoj = noktoj - cxeesto("31/1").toInt // silvestre ne estas vespermangxo
+      val kiomVespermangxoj = noktoj
 
       val prezoMatenmangxo = Prezoj.matenmangxo * matenmangxo.toInt
       val prezoTagmangxo = Prezoj.tagmangxo * tagmangxo.toInt
@@ -151,6 +154,22 @@ object Jes2015Kotizo {
       else ListMap()
     }
 
+    val balo: ListMap[String, Euroj] = {
+
+      val pagasBalokotizon_? = cxeesto.apply("31/1") && noktoj == 1
+
+      if(pagasBalokotizon_?) {
+        val naskiita = form.dates.str2millis(naskigxdato.value.get.toString)
+
+        val agxKategorio = if(naskiita > form.dates.str2millis("2000-12-26")) 0
+        else if(naskiita > form.dates.str2millis("1985-12-26") && studento_?) 1
+        else if(naskiita > form.dates.str2millis("1985-12-26")) 2
+        else 3
+
+        ListMap (s"Balokotizo" -> Prezoj.balo(agxKategorio))
+      } else ListMap()
+    }
+
     val donaco: ListMap[String, Euroj] = {
       val kvoto = donacoKvoto.value.getOrElse(0)
       kvoto match {
@@ -169,10 +188,9 @@ object Jes2015Kotizo {
       if(tutpagaRabato && suficxeFrue_?) ListMap(
             s"Rabato pro bonvola tuja tuta pago (dankon!)" -> -Prezoj.tutaPagoGxisFinoDeSomero
           ) else ListMap.empty
-      }
     }
 
-    val finaPrezo: ListMap[String, Euroj] = ListMap() ++ mangxado ++ logxado ++ imposto ++ programo ++ invitletero ++ tutpagaRabato ++ donaco
+    val finaPrezo: ListMap[String, Euroj] = ListMap() ++ mangxado ++ logxado ++ imposto ++ programo ++ invitletero ++ balo ++ tutpagaRabato ++ donaco
     Kotizo(finaPrezo)
   }
 
