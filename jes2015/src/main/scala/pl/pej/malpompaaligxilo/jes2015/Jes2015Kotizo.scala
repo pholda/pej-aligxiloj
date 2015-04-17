@@ -149,14 +149,16 @@ object Jes2015Kotizo {
 
       if(naskiita > form.dates.str2millis("1997-12-26"))
         ListMap(
-          s"Imposto por hungara ŝtato ($noktoj&nbsp;foje&nbsp;%.2f)".format(Prezoj.imposxto) ->  Prezoj.imposxto*noktoj
+          s"Impoŝto por hungara ŝtato ($noktoj&nbsp;foje&nbsp;%.2f)".format(Prezoj.imposxto) ->  Prezoj.imposxto*noktoj
         )
       else ListMap()
     }
 
     val balo: ListMap[String, Euroj] = {
 
-      val pagasBalokotizon_? = cxeesto.apply("31/1") && noktoj == 1
+      val nurBalo: Boolean = form.cxeesto.value.exists(_.value == "balo")
+
+      val pagasBalokotizon_? = (cxeesto.apply("31/1") && noktoj == 1) || nurBalo
 
       if(pagasBalokotizon_?) {
         val naskiita = form.dates.str2millis(naskigxdato.value.get.toString)
