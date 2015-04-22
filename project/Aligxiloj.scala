@@ -1,10 +1,10 @@
-
 import org.scalajs.sbtplugin.ScalaJSPlugin
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import sbt._
 import Keys._
+import com.typesafe.sbt.packager.universal.UniversalKeys
 
-object Aligxiloj extends Build {
+object Aligxiloj extends Build with UniversalKeys  {
   val maVersion = "0.1.1-SNAPSHOT"
 
   val defaults = Defaults.coreDefaultSettings ++ List(
@@ -49,6 +49,8 @@ object Aligxiloj extends Build {
     )
   ).dependsOn().enablePlugins(ScalaJSPlugin)
 
+  val scalajsOutputDir = Def.settingKey[File]("directory for javascript files output by scalajs")
+
   lazy val playBackend = Project(
     id = "playBackend",
     base = file("playBackend"),
@@ -61,7 +63,17 @@ object Aligxiloj extends Build {
         "com.github.nscala-time" %% "nscala-time" % "1.6.0",
         "pl.pej.malpompaaligxilo" %% "twirl-templates" % maVersion,
         "pl.pej.malpompaaligxilo" %% "google-api" % maVersion
-      )
-    )
+      ),
+      scalajsOutputDir := (classDirectory in Compile).value / "public" / "javascripts",
+      /**
+       * copying scalajs output to public/javascript. It should be done better
+       */
+      compile in Compile <<= (compile in Compile) dependsOn (fastOptJS in (jes2015, Compile)),
+      dist <<= dist dependsOn (fullOptJS in (jes2015, Compile)),
+      stage <<= stage dependsOn (fullOptJS in (jes2015, Compile))
+    ) ++ (
+      Seq(packageScalaJSLauncher, fastOptJS, fullOptJS) map { packageJSKey =>
+        crossTarget in (jes2015, Compile, packageJSKey) := scalajsOutputDir.value
+    })
   ).dependsOn(jes2015, semajnfino).enablePlugins(play.PlayScala)
 }

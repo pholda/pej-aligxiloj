@@ -7,7 +7,7 @@
 <div class="form-group">
     <label for="@field.name" class="col-sm-4 control-label">
         <dl>
-            <dt>@field.caption(lang)@if(field.required){<span class="required"> *</span>}@if(field.caption(lang).nonEmpty){:}</dt>
+            <dt>@field.caption(lang)@if(field.required){<span class="required">&nbsp;*</span>}@if(field.caption(lang).nonEmpty){:}</dt>
             <dd>@if(field.description.nonEmpty){
                 <div class="fieldDesc">@field.description.get.apply(lang)</div>
             }</dd>
@@ -15,9 +15,9 @@
                 <dd class="error">
                 @{
                     field.validate.getOrElse("undefined") match {
-                        case RequiredError => "this field is required"
-                        case NothingSelectedError => "nothing was selected"
-                        case BadDateFormatError => "bad date format"
+                        case RequiredError => "tiu ĉi kampo estas deviga"
+                        case NothingSelectedError => "nenio estis elektita"
+                        case BadDateFormatError => "malkorekta formo de dato"
                         case CustomError(msg) => msg(lang)
                     }
                 }

@@ -3,46 +3,42 @@ package pl.pej.malpompaaligxilo.jes2015
 import org.scalajs.dom
 import org.scalajs.dom.Element
 import org.scalajs.jquery.jQuery
-import pl.pej.malpompaaligxilo.form.{JSContext, Field}
-import pl.pej.malpompaaligxilo.form.field.{CustomCalculateField, CalculateField}
-import pl.pej.malpompaaligxilo.util.DatesJS
+import pl.pej.malpompaaligxilo.form.field.CustomCalculateField
+import pl.pej.malpompaaligxilo.form.{Field, JSContext}
 
 import scala.collection.mutable.ListBuffer
 import scala.scalajs.js
 import scala.scalajs.js.JSApp
 import scala.scalajs.js.annotation.JSExport
-import scala.util.Try
 
 object Jes2015FormJS extends JSApp {
   implicit val context = JSContext
   val form = new Jes2015Aligxilo({field =>
-    Try{
-      if (jQuery(s"[name=$field]").is("[type=checkbox]")) {
-        jQuery(s"[name=$field]").is(":checked") match {
-          case true => Seq("jes")
-          case false => Seq.empty
+    field.`type`.arrayValue match {
+      case false =>
+        if (jQuery(s"[name=${field.name}]").is("[type=checkbox]")) {
+          jQuery(s"[name=${field.name}]").is(":checked") match {
+            case true => Seq("jes")
+            case false => Seq.empty
+          }
+        } else {
+          Seq(jQuery(s"[name=${field.name}]").`val`().asInstanceOf[String])
         }
-      } else {
-        Seq(jQuery(s"[name=$field]").`val`().asInstanceOf[String])
-      }
-    }.getOrElse{
-      Try{
+      case true =>
         val checked = new ListBuffer[String]
-        jQuery(s"[name='$field[]']:checked").each{(a: js.Any, e: Element) =>
+        jQuery(s"[name='${field.name}[]']:checked").each{(a: js.Any, e: Element) =>
           checked.append(jQuery(e).`val`().asInstanceOf[String])
           a
         }
         checked.toSeq
-      }.getOrElse(throw new Exception(s"cannot read field $field"))
     }
-
   })
 
   @JSExport
   def main(): Unit = {
 
     lazy val calculableField = form.fields.collect{
-      case f@Field(_, _, CustomCalculateField(_), _, _, _, _, _, _) => f
+      case f@Field(_, _, CustomCalculateField(_), _, _, _, _, _, _, _) => f
     }
 
     def refresh() {
@@ -60,14 +56,14 @@ object Jes2015FormJS extends JSApp {
       }
 
       calculableField.foreach{
-        case Field(name, _, CustomCalculateField(formula), _, _, _, _, _, _) =>
+        case Field(name, _, CustomCalculateField(formula), _, _, _, _, _, _, _) =>
           try {
             jQuery(s".formExpression[data-name='$name']").html(formula(form) match {
-//              case d: js.Number => d.toFixed(2)
-              case x => x.toString
+              case Some(x) => x.toString
+              case _ => ""
             })
           } catch {
-            case e: Exception => println(s"erraro2 cxe $name ${e.getMessage}")
+            case e: Exception => println(s"erraro2 cxe ${e.getMessage}")
           }
 
       }

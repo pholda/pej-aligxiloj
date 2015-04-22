@@ -3,9 +3,11 @@ package pl.pej.malpompaaligxilo.jes2015
 import pl.pej.malpompaaligxilo.form._
 import pl.pej.malpompaaligxilo.form.errors.CustomError
 import pl.pej.malpompaaligxilo.form.field._
+import pl.pej.malpompaaligxilo.form.field.calculateField.CurrentDateField
 import pl.pej.malpompaaligxilo.util.{Date, Dates, NoI18nString, I18nString}
 import pl.pej.malpompaaligxilo.form.field.TableCheckboxField.{tuple2col, tuple2row}
 
+import scala.collection.immutable.ListMap
 import scala.util.Try
 
 class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Boolean = false)(implicit val context: Context) extends Form {
@@ -15,13 +17,25 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
   override protected def getRawFieldValue(field: Field[_]): Seq[String] = rawFieldValue(field)
 
   override def fields: List[Field[_]] =
+    aligxDato ::
     personaNomo :: familiaNomo :: kromnomo :: naskigxdato :: sub18 :: genro :: retposxtadreso :: tujmesagxilo ::
-      telefonnumero :: lando :: adreso :: studento :: studentoFako :: invitilo :: pasportnumero :: pasportovalideco :: invitiloAdreso ::
+      vizagxlibro ::
+      telefonnumero :: lando :: adreso :: studento :: studentoFako :: invitilo :: invitiloPersonaNomo ::
+      invitiloFamiliaNomo ::
+      pasportnumero :: pasportoeldondato :: pasportoeldonitade :: pasportovalideco :: invitiloAdreso ::
       adresaro :: logxado :: logxadoGea :: logxadoPrefero :: logxadoKun :: cxeesto :: cxeestoElekto ::
       mangxadoBalo :: matenmangxoj :: tagmangxoj :: vespermangxoj :: matenmangxoPrefero :: mangxtipo :: mangxtipoKlarigo ::
       mangxtipo2  :: ludejoKontribuo :: ludiMuzikilon :: kielLudos :: muzikgrupoNomo :: miKunportos :: dejxoriHelpo :: gxeneralaHelpado ::
       programkontribuo :: pagado :: donacoKvoto :: donacoKialo :: donacoKialoKlarigo :: kotizo :: miPagos ::
-      miPagosGxis :: miPagosGxisAlt :: komento :: regularo :: Nil
+      komento :: regularo :: Nil
+
+  val aligxDato = Field(
+    name = "aligxDato",
+    caption = NoI18nString("aligxDato"),
+    visible = false,
+    store = true,
+    `type` = CurrentDateField()
+  )
 
   val personaNomo = Field(
     name = "personaNomo",
@@ -29,6 +43,9 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
       "eo" -> "Persona Nomo",
       "pl" -> "Imie"
     ),
+    description = Some(I18nString(
+      "eo" -> "por identigilo kaj adresaro"
+    )),
     required = true,
     `type` = StringField()
   )
@@ -38,6 +55,9 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
       "eo" -> "Familia Nomo",
       "pl" -> "Imie"
     ),
+    description = Some(I18nString(
+      "eo" -> "por identigilo kaj adresaro"
+    )),
     required = true,
     `type` = StringField()
   )
@@ -68,14 +88,15 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
   val sub18 = Field(
     name = "sub18",
     caption = NoI18nString(""),
-    visible = {form =>
-      form.fieldValue(naskigxdato) match {
+    visible = {implicit form =>
+      naskigxdato.value match {
         case Some(date: Date) =>
           Try{
-            val unuantagon18jaroj = form.dates.str2millis("1997-12-27")
-            unuantagon18jaroj < form.dates.str2millis(date.toString)
+            val unuantagon18jaroj = form.dates.fromString("1997-12-27")
+            form.dates.fromString("1997-12-27") < date
           }.getOrElse(false)
-        case _ => false
+        case _ =>
+          false
       }
     },
     store = false,
@@ -132,6 +153,15 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
     description = Some(I18nString("eo" -> "ekz. Skype: …")),
     `type` = StringField()
   )
+  val vizagxlibro = Field(
+    name = "vizagxlibro",
+    caption = I18nString(
+      "eo" -> "FB-adreso"
+    ),
+    `type` = StringField(
+      default = Some("https://www.facebook.com/")
+    )
+  )
   val telefonnumero = Field(
     name = "telefonnumero",
     caption = I18nString(
@@ -150,15 +180,15 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
   )
   val studento = Field(
     name = "studento",
-    caption = I18nString("eo" -> "Mi estas plentempa studento"),
+    caption = I18nString("eo" -> "Mi estas plentempa studento/lernanto"),
     `type` = CheckboxField(default = false)
   )
   val studentoFako = Field(
     name = "studentoFako",
-    caption = I18nString("eo" -> "Mi studas"),
+    caption = I18nString("eo" -> "Mi studas/lernas"),
     `type` = StringField(),
-    visible = {f =>
-      f.getFieldValue(studento) == Some(true)
+    visible = {implicit form =>
+      studento.value == Some(true)
     }
   )
 
@@ -174,9 +204,54 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
       )
     )
   )
+
+  val invitiloPersonaNomo = Field(
+    name = "invitiloPersonaNomo",
+    caption = I18nString(
+      "eo" -> "Persona Nomo",
+      "pl" -> "Imie"
+    ),
+    description = Some(I18nString(
+      "eo" -> "por invitilo"
+    )),
+    visible = {implicit form =>
+      invitilo.value.exists(_.value == "jes")
+    },
+    `type` = StringField()
+  )
+  val invitiloFamiliaNomo = Field(
+    name = "invitiloFamiliaNomo",
+    caption = I18nString(
+      "eo" -> "Familia Nomo",
+      "pl" -> "Imie"
+    ),
+    description = Some(I18nString(
+      "eo" -> "por invitilo"
+    )),
+    visible = {implicit form =>
+      invitilo.value.exists(_.value == "jes")
+    },
+    `type` = StringField()
+  )
   val pasportnumero = Field(
     name = "pasportnumero",
     caption = I18nString("eo" -> "Numero de pasporto"),
+    visible = {implicit form =>
+      invitilo.value.exists(_.value == "jes")
+    },
+    `type` = StringField()
+  )
+  val pasportoeldondato = Field(
+    name = "pasportoeldondato",
+    caption = I18nString("eo" -> "Eldondato de pasporto"),
+    visible = {implicit form =>
+      invitilo.value.exists(_.value == "jes")
+    },
+    `type` = DateField(yearRange = Some("2005:2015"))
+  )
+  val pasportoeldonitade = Field(
+    name = "pasportoeldonitade",
+    caption = I18nString("eo" -> "Pasporto eldonita de"),
     visible = {implicit form =>
       invitilo.value.exists(_.value == "jes")
     },
@@ -232,7 +307,8 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
         EnumOption("4-lita-cxambro-sen-dusxejo", I18nString("eo" -> "4 lita sen duŝejo")),
 //        EnumOption("14-lita-cxambro-sen-dusxejo", I18nString("eo" -> "14 lita kun duŝejo en apuda konstruaĵo")),
         EnumOption("amaslogxejo-matraco", I18nString("eo" -> "amasloĝejo sur matraco")),
-        EnumOption("amaslogxejo-surplanke", I18nString("eo" -> "amasloĝejo surplanke"))
+        EnumOption("amaslogxejo-surplanke", I18nString("eo" -> "amasloĝejo surplanke")),
+        EnumOption("memzorganto", I18nString("eo" -> "memzorganto"))
       )
     )
   )
@@ -242,7 +318,7 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
       "eo" -> "Ĉu via ĉambro rajtas esti gea?"
     ),
     visible = {implicit form =>
-      logxado.value.forall(_.value != "memzorge")
+      logxado.value.forall(_.value != "memzorganto")
     },
     `type` = SelectField(
       options = List(
@@ -257,7 +333,7 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
       "eo" -> "Mi preferas loĝi en … ĉambro."
     ),
     visible = {implicit form =>
-      logxado.value.forall(_.value != "memzorge")
+      logxado.value.forall(_.value != "memzorganto")
     },
     `type` = SelectField(
       options = List(
@@ -273,7 +349,7 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
       "eo" -> "Mi preferus loĝi kun…"
     ),
     visible = {implicit form =>
-      logxado.value.forall(_.value != "memzorge")
+      logxado.value.forall(_.value != "memzorganto")
     },
     `type` = StringField()
   )
@@ -343,7 +419,7 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
     caption = I18nString(
       "eo" -> "Manĝtipo por la silvestra balo"
     ),
-    description = Some(I18nString("eo" -> "Se vi estas memzorganto, ni bezonas scii vian kutiman manĝtipon por la silvestra balo.")),
+    description = Some(I18nString("eo" -> "Eĉ se vi estas memzorganto, ni bezonas scii vian kutiman manĝtipon por la silvestra balo.")),
     visible = {implicit form =>
       (matenmangxoj.value != Some(true) &&
         vespermangxoj.value != Some(true) &&
@@ -434,7 +510,14 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
         )
       ),
       cols = List(TableCheckboxCol("jes", NoI18nString("jes")))
-    )
+    ),
+    separateValues = { f: Option[Set[(TableCheckboxRow, TableCheckboxCol)]] =>
+      f match {
+        case Some(values) =>
+          Some(List("ludejoKontribuo" -> values.map(_._1.id).mkString(", ")))
+        case _ => None
+      }
+    }
   )
   val ludiMuzikilon = Field(
     name = "ludiMuzikilon",
@@ -459,7 +542,14 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
         "mi-koncertus-gufuje" -> I18nString("eo" -> "Mi pretas fari 20-30 minutan gufujan koncerteton"),
         "mi-koncertus-vespere" -> I18nString("eo" -> "Mi pretas aŭ sole, aŭ kun aliaj (propra muzikgrupo, spontanea ludado ktp.) fari 45-60 minutan koncerton, kiel vespera programo")
       )
-    )
+    ),
+    separateValues = { f: Option[Set[(TableCheckboxRow, TableCheckboxCol)]] =>
+      f match {
+        case Some(values) =>
+          Some(List("kielLudos" -> values.map(_._1.id).mkString(", ")))
+        case _ => None
+      }
+    }
   )
   val muzikgrupoNomo = Field(
     name = "muzikgrupoNomo",
@@ -479,15 +569,22 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
     `type` = TableCheckboxField(
       cols = List("jes" -> NoI18nString("jes")),
       rows = List(
-        "gitaro" -> I18nString("eo" -> "Gitaro"),
-        "violono" -> I18nString("eo" -> "Violono"),
-        "transversaFluto" -> I18nString("eo" -> "Transversa fluto"),
-        "bekfluto" -> I18nString("eo" -> "Bekfluto"),
-        "ukulelo" -> I18nString("eo" -> "Ukulelo"),
-        "alia" -> I18nString("eo" -> "Alia muzikilo"),
+        "gitaro" -> I18nString("eo" -> "Gitaron"),
+        "violono" -> I18nString("eo" -> "Violonon"),
+        "transversaFluto" -> I18nString("eo" -> "Transversan fluton"),
+        "bekfluto" -> I18nString("eo" -> "Bekfluton"),
+        "ukulelo" -> I18nString("eo" -> "Ukulelon"),
+        "alia" -> I18nString("eo" -> "Alian muzikilon"),
         "ne-scias" -> I18nString("eo" -> "Mi ankoraŭ ne decidis, sed mi certe kunportos ion")
       )
-    )
+    ),
+    separateValues = {f: Option[Set[(TableCheckboxRow, TableCheckboxCol)]] =>
+      f match {
+        case Some(values) =>
+          Some(List("miKunportos" -> values.map(_._1.id).mkString(", ")))
+        case _ => None
+      }
+    }
   )
   val dejxoriHelpo = Field(
     name = "dejxoriHelpo",
@@ -509,7 +606,7 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
   val gxeneralaHelpado = Field(
     name = "gxeneralaHelpado",
     caption = I18nString("eo" -> "Ĝenarala helpado"),
-    description = Some(I18nString("eo" -> "Se vi volonte helpos al ni pri ĝeneralaj taskoj bv. ĉi tie indiki (ekzemple per pakado de tabloj por ejo, gvidado de la grupo al la ekstera halo).")),
+    description = Some(I18nString("eo" -> "Se vi volonte helpos al ni pri ĝeneralaj taskoj bv. ĉi tie indiki (ekzemple per pakado de tabloj en la ejo, gvidado de la grupo al la ekstera halo).")),
     `type` = CheckboxField()
   )
   val programkontribuo = Field(
@@ -523,7 +620,7 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
     caption = I18nString("eo" -> "Pagado"),
     required = true,
     `type` = SelectField(List(
-      EnumOption("uea", I18nString("eo" -> "UEA-konto")),
+      EnumOption("uea", I18nString("eo" -> "UEA-konto (jesm-f)")),
       EnumOption("hungara", I18nString("eo" -> "la hungara konto")),
       EnumOption("pola", I18nString("eo" -> "la pola konto"))
     ))
@@ -558,12 +655,23 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
     caption = I18nString("eo" -> "Kalkulita kotizo"),
     description = Some(I18nString("eo" -> "En eŭroj")),
     `type` = CustomCalculateField[Kotizo]{f =>
-      Some(Jes2015Kotizo.kotizo(f.asInstanceOf[Jes2015Aligxilo]))
-    }
+      try {
+        Some(Jes2015Kotizo.kotizo(f.asInstanceOf[Jes2015Aligxilo]))
+      } catch {
+        case e => None
+      }
+    },
+    separateValues = {k: Option[Kotizo] => {
+      k match {
+        case Some(kotizo) => Some(List("kotizo" -> "%1.00f".format(kotizo.sumo)))
+        case None => None
+      }
+    }}
   )
   val miPagos = Field(
     name = "miPagos",
     caption = I18nString("eo" -> "Ene de la nuna aliĝperiodo mi pagos.."),
+    description = Some(I18nString("eo" -> "Se vi pagos la tutan kotizon ĝis la 31-a de aŭgusto, vi ricevos rabaton je 5€")),
     required = true,
     `type` = SelectField(List(
       EnumOption("tuton", I18nString("eo" -> "tutan sumon por helpi en organizado kaj ĝui 5-eŭran rabaton")),
@@ -610,7 +718,7 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
   )
   val regularo = Field(
     name = "regularo",
-    caption = I18nString("eo" -> "Mi akceptas regulojn de la aranĝo"),
+    caption = I18nString("eo" -> "Mi akceptas la regularon de la aranĝo"),
     required = true,
     `type` = CheckboxField(),
     customValidate = {v: Boolean =>

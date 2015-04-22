@@ -8,6 +8,7 @@ import controllers.JES2015._
 import pl.pej.malpompaaligxilo.form.ScalaContext
 import pl.pej.malpompaaligxilo.form.action.AddToGoogleSpreadsheetFormAction
 import pl.pej.malpompaaligxilo.googleapi.{AccountConfig, Spreadsheet}
+import pl.pej.malpompaaligxilo.jes2015.Jes2015Aligxilo
 import pl.pej.malpompaaligxilo.semajnfino.SemajnfinoAligxilo
 import play.api.mvc.Action
 import util.SendMailFormAction
@@ -48,7 +49,7 @@ object Semajnfino {
           case _:ServiceForbiddenException => throw new Exception("google forbidden")
         }
 
-        val sendMailFormAction = SendMailFormAction(
+        val sendMailFormAction = SendMailFormAction[SemajnfinoAligxilo](
           subject = "PEJ semajnfino",
           from = "Pola Esperanto-Junularo <pej@pej.pl>",
           to = Seq(form.personaNomo.value.get +" <" + form.retposxtadreso.value.get +" >"),

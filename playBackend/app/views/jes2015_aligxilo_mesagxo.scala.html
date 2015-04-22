@@ -1,4 +1,4 @@
-@(implicit form: pl.pej.malpompaaligxilo.jes2015.Jes2015Aligxilo)
+@(implicit form: pl.pej.malpompaaligxilo.jes2015.Jes2015Aligxilo, lang: pl.pej.malpompaaligxilo.util.Lang = "eo")
 @import pl.pej.malpompaaligxilo.templates.html.fieldvalue
 <html>
     <head>
@@ -23,13 +23,18 @@ la teamo de JES</h3>
 @fieldvalue(form.genro)
 @fieldvalue(form.retposxtadreso)
 @fieldvalue(form.tujmesagxilo)
+@fieldvalue(form.vizagxlibro)
 @fieldvalue(form.telefonnumero)
 @fieldvalue(form.lando)
 @fieldvalue(form.adreso)
 @fieldvalue(form.studento)
 @fieldvalue(form.studentoFako)
 @fieldvalue(form.invitilo)
+@fieldvalue(form.invitiloPersonaNomo)
+@fieldvalue(form.invitiloFamiliaNomo)
 @fieldvalue(form.pasportnumero)
+@fieldvalue(form.pasportoeldondato)
+@fieldvalue(form.pasportoeldonitade)
 @fieldvalue(form.pasportovalideco)
 @fieldvalue(form.invitiloAdreso)
 @fieldvalue(form.adresaro)
@@ -59,9 +64,6 @@ la teamo de JES</h3>
 @fieldvalue(form.donacoKialoKlarigo)
 @fieldvalue(form.kotizo)
 @fieldvalue(form.miPagos)
-@fieldvalue(form.miPagosGxis)
-@fieldvalue(form.miPagosGxisAlt)
-@fieldvalue(form.komento)
 
     <h1>Dum la aranĝo</h1>
 @fieldvalue(form.ludejoKontribuo)
@@ -72,5 +74,8 @@ la teamo de JES</h3>
 @fieldvalue(form.dejxoriHelpo)
 @fieldvalue(form.gxeneralaHelpado)
 @fieldvalue(form.programkontribuo)
+
+    <h1>Komento</h1>
+@fieldvalue(form.komento)
     </body>
 </html>

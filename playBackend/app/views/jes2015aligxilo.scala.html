@@ -9,36 +9,39 @@
         <link rel="stylesheet" href="@routes.Assets.at("stylesheets/bootstrap-theme.min.css")" />
         <link rel="stylesheet" href="@routes.Assets.at("jquery-ui-1.11.2.custom/jquery-ui.min.css")" />
         <link rel="stylesheet" href="@routes.Assets.at("stylesheets/jes2015.css")" />
+        <style type="text/css">
+            .ui-datepicker-title select {
+                color: #000
+            }
+        </style>
     </head>
     <body>
-            <!-- Include Scala.js compiled code -->
-        <script type="text/javascript" src="@routes.Assets.at("javascripts/jes2015-jsdeps.js")"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
         <script type="text/javascript" src="@routes.Assets.at("jquery-ui-1.11.2.custom/jquery-ui.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("jquery-ui-1.11.2.custom/i18n/datepicker-eo.js")"></script>
         <script type="text/javascript">
         $(function(){
-        $('input[type=text].formDate' ).each(function() {
-        $(this).datepicker({
-        "dateFormat": "yy-mm-dd",
-        changeMonth: true,
-        changeYear: true,
-        minDate: $(this).data("mindate"),
-        maxDate: $(this).data("maxdate"),
-        yearRange: $(this).data("yearrange")
-        });
-        })})
+            $('input[type=text].formDate' ).each(function() {
+            $(this).datepicker({
+                "dateFormat": "yy-mm-dd",
+                changeMonth: true,
+                changeYear: true,
+                minDate: $(this).data("mindate"),
+                maxDate: $(this).data("maxdate"),
+                yearRange: $(this).data("yearrange")
+                });
+            });
+            $.datepicker.regional[ "eo" ];
+        })
 
         </script>
 
         <script type="text/javascript" src="/assets/javascripts/jes2015-fastopt.js"></script>
-        <form id="aligxilo" action="@routes.JES2015.submit()" method="post" class="form-horizontal">
-            <div id="_kotizo">
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <strong>Kalkulita kotizo:</strong>
-                        <span data-name="kotizo" class="formExpression"></span>
-                    </div>
-                </div>
-            </div>
+        <p class="titolo text-center">JES 2015</p>
+        @if(form.hasErrors) {
+            <div class="error text-center">okazis eraroj dum via aliĝo - bv. korekti ilin</div>
+        }
+        <form id="aligxilo" action="@routes.JES2015.submit()" method="post" class="form-horizontal col-sm-offset-4 col-sm-8">
             <div class="row">
                 <h1>Personaj datumoj</h1>
             </div>
@@ -51,6 +54,7 @@
             @field(form.genro)
             @field(form.retposxtadreso)
             @field(form.tujmesagxilo)
+            @field(form.vizagxlibro)
 
             @field(form.telefonnumero)
             @field(form.lando)
@@ -58,7 +62,11 @@
             @field(form.studento)
             @field(form.studentoFako)
             @field(form.invitilo)
+            @field(form.invitiloPersonaNomo)
+            @field(form.invitiloFamiliaNomo)
             @field(form.pasportnumero)
+            @field(form.pasportoeldondato)
+            @field(form.pasportoeldonitade)
             @field(form.pasportovalideco)
             @field(form.invitiloAdreso)
 
@@ -93,10 +101,6 @@
             @field(form.donacoKialo)
             @field(form.donacoKialoKlarigo)
             @field(form.miPagos)
-
-            @field(form.miPagosGxis)
-            @field(form.miPagosGxisAlt)
-            @field(form.komento)
             <div class="row">
                 <h1>Dum la aranĝo</h1>
                 <h4>JES estas renkontiĝo, kie ricevas centran rolon la kontribuoj de la partoprenantoj. Tiu ĉi renkontiĝo estas por vi. La organizantoj donas la strukturon de la programoj, kaj la partoprenantoj kontribuas al la programeroj dum la semajno ne nur per la ĉeestado. Ni petas vin pripensi kiel vi povas mojosigi la etoson!</h4>
@@ -112,9 +116,11 @@
             @field(form.programkontribuo)
             @field(form.programkontribuo)
             <div class="row">
-                <h1>Regularo</h1>
-                <h4>Bv. akcepti la regularon [ligilo?]</h4>
+                <h1>Komento kaj regularo</h1>
+                @*<h4>Bv. akcepti la regularon</h4>*@
             </div>
+            @field(form.komento)
+
             @field(form.regularo)
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
@@ -122,9 +128,17 @@
                 </div>
             </div>
         </form>
+        <div id="_kotizo" class="col-sm-3">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <strong>Kalkulita kotizo:</strong>
+                    <span data-name="kotizo" class="formExpression"></span>
+                </div>
+            </div>
+        </div>
         <div class="plendu">Aliĝilo starigita per&nbsp;<em>MalpompaAliĝilo</em>. Bv.&nbsp;sendi plendojn al piotr.holda&nbsp;ĈE&nbsp;pej.pl&nbsp;.</div>
         <script type="text/javascript">
-        pl.pej.malpompaaligxilo.jes2015.Jes2015Form().main();
+        pl.pej.malpompaaligxilo.jes2015.Jes2015FormJS().main();
         </script>
     </body>
 </html>

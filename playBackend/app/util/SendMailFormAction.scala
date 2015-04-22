@@ -4,18 +4,18 @@ import pl.pej.malpompaaligxilo.form.{Form, FormAction}
 import play.api.Application
 import play.api.libs.mailer.{MailerPlugin, Attachment, Email}
 
-case class SendMailFormAction(
-  subject: String,
+case class SendMailFormAction[F <: Form](
+  subject: F => String,
   from: String,
-  to: Form => Seq[String],
-  html: Form => String,
-  cc: Form => Seq[String] = _ => Nil,
-  bcc: Form => Seq[String] = _ => Nil,
-  attachments: Form => Seq[Attachment] = _ => Nil
-                               )(implicit val app: Application) extends FormAction {
-  override def run(form: Form): Unit = {
+  to: F => Seq[String],
+  html: F => String,
+  cc: F => Seq[String] = (f: F) => Nil,
+  bcc: F => Seq[String] = (f: F) => Nil,
+  attachments: F => Seq[Attachment] = (f: F) => Nil
+                               )(implicit val app: Application) extends FormAction[F] {
+  override def run(form: F): Unit = {
     val email = Email(
-      subject = subject,
+      subject = subject(form),
       from = from,
       to = to(form),
       bodyHtml = Some(html(form)),
