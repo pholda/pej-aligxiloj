@@ -1,5 +1,7 @@
 package pl.pej.malpompaaligxilo.jes2015
 
+import pl.pej.malpompaaligxilo.util._
+
 import scala.collection.immutable.ListMap
 import scala.util.Try
 
@@ -41,7 +43,7 @@ object Jes2015Kotizo {
     val tutaPagoGxisFinoDeSomero: Euroj = 5
   }
 
-  def kotizo(implicit form: Jes2015Aligxilo) = {
+  def kotizo(implicit form: Jes2015Aligxilo, poCfg: PoCfg): Kotizo = {
     Try {
 
       import form._
@@ -65,7 +67,7 @@ object Jes2015Kotizo {
         }
       }
 
-      lazy val programo: Map[String, Euroj] = {
+      lazy val programo: Map[KotizoComponent, Euroj] = {
         val currentDate = form.dates.now
 
         val aligxkategoriajPrezoj: Seq[Seq[Euroj]] = if (currentDate < form.dates.fromString("2015-04-30")) Prezoj.IJF
@@ -92,10 +94,10 @@ object Jes2015Kotizo {
 
         val programo = aligxkategoriajPrezoj(agxKategorio)(landoKategorio) * scala.math.min(1 + noktoj, 7).toDouble / 7
 
-        Map(s"Programkotizo" -> programo)
+        Map(SingleKotizoComponent(I18n.po("Programkotizo")) -> programo)
       }
 
-      val mangxado: Map[String, Euroj] = {
+      val mangxado: Map[KotizoComponent, Euroj] = {
 
         val matenmangxo: Boolean = form.matenmangxoj.value.getOrElse(false)
         val tagmangxo: Boolean = form.tagmangxoj.value.getOrElse(false)
@@ -109,55 +111,56 @@ object Jes2015Kotizo {
         val prezoTagmangxo = Prezoj.tagmangxo * tagmangxo.toInt
         val prezoVespermangxo = Prezoj.vespermangxo * vespermangxo.toInt
 
-        Map(s"Matenmanĝoj ($kiomMatenmangxoj&nbsp;foje&nbsp;%.2f)".format(prezoMatenmangxo) -> kiomMatenmangxoj * prezoMatenmangxo,
-          s"Tagmanĝoj ($kiomTagmangxoj&nbsp;foje&nbsp;%.2f)".format(prezoTagmangxo) -> kiomTagmangxoj * prezoTagmangxo,
-          s"Vespermanĝoj ($kiomVespermangxoj&nbsp;foje&nbsp;%.2f)".format(prezoVespermangxo) -> kiomVespermangxoj * prezoVespermangxo)
+        Map(
+          MultimpleKotizoComponent(I18n.po("Matenmanĝoj"), prezoMatenmangxo, kiomMatenmangxoj) -> kiomMatenmangxoj * prezoMatenmangxo,
+          MultimpleKotizoComponent(I18n.po("Tagmanĝoj"), prezoTagmangxo, kiomTagmangxoj) -> kiomTagmangxoj * prezoTagmangxo,
+          MultimpleKotizoComponent(I18n.po("Vespermanĝoj"), prezoVespermangxo, kiomVespermangxoj) -> kiomVespermangxoj * prezoVespermangxo)
       }
 
-      val logxado: Map[String, Euroj] = {
+      val logxado: Map[KotizoComponent, Euroj] = {
 
         val logxelekto = form.logxado.value.get.value
 
         logxelekto match {
           case "2-lita-cxambro" => Map(
-            s"Ĉambro kun propra duŝejo ($noktoj&nbsp;foje&nbsp;%.2f)".format(Prezoj.tranoktoKundusxeja) -> noktoj * Prezoj.tranoktoKundusxeja,
-            "Dulita krompago" -> Prezoj.dulitaKrompago
+            MultimpleKotizoComponent(I18n.po("Ĉambro kun propra duŝejo"), Prezoj.tranoktoKundusxeja, noktoj) -> noktoj * Prezoj.tranoktoKundusxeja,
+            SingleKotizoComponent(I18n.po("Dulita krompago")) -> Prezoj.dulitaKrompago
           )
           case "kundusxeja" => Map(
-            s"Ĉambro kun propra duŝejo (4-6 persona) ($noktoj&nbsp;foje&nbsp;%.2f)".format(Prezoj.tranoktoKundusxeja) -> noktoj * Prezoj.tranoktoKundusxeja
+            MultimpleKotizoComponent(I18n.po("Ĉambro kun propra duŝejo (4-6 persona)"), Prezoj.tranoktoKundusxeja, noktoj) -> noktoj * Prezoj.tranoktoKundusxeja
           )
           case "4-lita-cxambro-sen-dusxejo" => Map(
-            s"Ĉambro kun koridora duŝejo ($noktoj&nbsp;foje&nbsp;%.2f)".format(Prezoj.tranoktoSendusxeja) -> noktoj * Prezoj.tranoktoSendusxeja
+            MultimpleKotizoComponent(I18n.po("Ĉambro kun koridora duŝejo"), Prezoj.tranoktoSendusxeja, noktoj) -> noktoj * Prezoj.tranoktoSendusxeja
           )
           //        case "14-lita-cxambro-sen-dusxejo" => Map(
           //          s"Ĉambro kun koridora duŝejo ($noktoj&nbsp;foje&nbsp;%.2f)".format(prezoSendusxejo) -> noktoj * prezoSendusxejo
           //        )
-          case "memzorganto" => Map.empty
+//          case "memzorganto" => Map.empty
           case _: String => Map(
-            s"Amasejo ($noktoj&nbsp;foje&nbsp;%.2f)".format(Prezoj.tranoktoAmasejo) -> noktoj * Prezoj.tranoktoAmasejo
+            MultimpleKotizoComponent(I18n.po("Amasejo"), Prezoj.tranoktoAmasejo, noktoj) -> noktoj * Prezoj.tranoktoAmasejo
           )
         }
       }
 
-      val invitletero: Map[String, Euroj] = {
+      val invitletero: Map[KotizoComponent, Euroj] = {
 
         val invitletero_? : Boolean = invitilo.value.exists(_.value == "jes")
 
-        Map(s"Invitletero" -> Prezoj.invitletero * (if (invitletero_?) 1 else 0))
+        Map(SingleKotizoComponent(I18n.po("Invitletero")) -> Prezoj.invitletero * (if (invitletero_?) 1 else 0))
       }
 
-      val imposto: ListMap[String, Euroj] = {
+      val imposto: ListMap[KotizoComponent, Euroj] = {
 
         val naskiita = form.dates.fromString(form.naskigxdato.value.get.toString)
 
-        if (naskiita < form.dates.fromString("1997-12-26") && form.logxado.value.exists(_.value != "memzorganto"))
+        if (naskiita <= form.dates.fromString("1997-12-27") && form.logxado.value.exists(_.value != "memzorganto"))
           ListMap(
-            s"Imposto por hungara ŝtato ($noktoj&nbsp;foje&nbsp;%.2f)".format(Prezoj.imposxto) -> Prezoj.imposxto * noktoj
+            MultimpleKotizoComponent(I18n.po("Imposto por hungara ŝtato"), Prezoj.imposxto, noktoj) -> Prezoj.imposxto * noktoj
           )
         else ListMap()
       }
 
-      val balo: ListMap[String, Euroj] = {
+      val balo: ListMap[KotizoComponent, Euroj] = {
 
         val pagasBalokotizon_? = (cxeesto.apply("31/1") && noktoj == 1) || form.cxeesto.value.exists(_.value == "balo")
 
@@ -169,32 +172,32 @@ object Jes2015Kotizo {
           else if (naskiita > form.dates.fromString("1985-12-26")) 2
           else 3
 
-          ListMap(s"Balokotizo" -> Prezoj.balo(agxKategorio))
+          ListMap(SingleKotizoComponent(I18n.po("Balokotizo")) -> Prezoj.balo(agxKategorio))
         } else ListMap()
       }
 
-      val donaco: ListMap[String, Euroj] = {
+      val donaco: ListMap[KotizoComponent, Euroj] = {
         val kvoto = donacoKvoto.value.getOrElse(0)
         kvoto match {
           case s if s > 0 =>
             ListMap(
-              s"Donaco al JES 2015" -> s
+              SingleKotizoComponent(I18n.po("Donaco al JES 2015")) -> s
             )
           case s => ListMap.empty
         }
       }
 
-      val tutpagaRabato: ListMap[String, Euroj] = {
+      val tutpagaRabato: ListMap[KotizoComponent, Euroj] = {
         val tutpagaRabato_? : Boolean = miPagos.value.exists(_.value == "tuton")
         val suficxeFrue_? : Boolean = form.dates.now < form.dates.fromString("2015-08-31")
 
         if (tutpagaRabato_? && suficxeFrue_?) ListMap(
-          s"Rabato pro bonvola tuja tuta pago (dankon!)" -> -Prezoj.tutaPagoGxisFinoDeSomero
+          SingleKotizoComponent(I18n.po("Rabato pro bonvola tuja tuta pago (dankon!)")) -> -Prezoj.tutaPagoGxisFinoDeSomero
         )
         else ListMap.empty
       }
 
-      val finaPrezo: ListMap[String, Euroj] = ListMap() ++ mangxado ++ logxado ++ imposto ++ programo ++ invitletero ++ balo ++ tutpagaRabato ++ donaco
+      val finaPrezo: ListMap[KotizoComponent, Euroj] = ListMap() ++ mangxado ++ logxado ++ imposto ++ programo ++ invitletero ++ balo ++ tutpagaRabato ++ donaco
       Kotizo(finaPrezo)
     }.getOrElse(Kotizo(ListMap.empty))
   }

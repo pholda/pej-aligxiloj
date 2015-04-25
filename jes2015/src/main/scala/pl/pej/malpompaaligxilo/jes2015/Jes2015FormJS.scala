@@ -4,7 +4,8 @@ import org.scalajs.dom
 import org.scalajs.dom.Element
 import org.scalajs.jquery.jQuery
 import pl.pej.malpompaaligxilo.form.field.CustomCalculateField
-import pl.pej.malpompaaligxilo.form.{Field, JSContext}
+import pl.pej.malpompaaligxilo.form.{PrintableCalculateFieldValue, Field, JSContext}
+import pl.pej.malpompaaligxilo.util._
 
 import scala.collection.mutable.ListBuffer
 import scala.scalajs.js
@@ -13,6 +14,10 @@ import scala.scalajs.js.annotation.JSExport
 
 object Jes2015FormJS extends JSApp {
   implicit val context = JSContext
+
+  implicit val lang: Lang = jQuery("html").attr("lang")
+  implicit val poCfg: PoCfg = PoCfg.fromJS("formI18n")
+
   val form = new Jes2015Aligxilo({field =>
     field.`type`.arrayValue match {
       case false =>
@@ -59,6 +64,7 @@ object Jes2015FormJS extends JSApp {
         case Field(name, _, CustomCalculateField(formula), _, _, _, _, _, _, _) =>
           try {
             jQuery(s".formExpression[data-name='$name']").html(formula(form) match {
+              case Some(p: PrintableCalculateFieldValue) => p.str
               case Some(x) => x.toString
               case _ => ""
             })

@@ -5,7 +5,7 @@ import Keys._
 import com.typesafe.sbt.packager.universal.UniversalKeys
 
 object Aligxiloj extends Build with UniversalKeys  {
-  val maVersion = "0.1.1-SNAPSHOT"
+  val maVersion = "0.1.2-SNAPSHOT"
 
   val defaults = Defaults.coreDefaultSettings ++ List(
     organization := "pl.pej.aligxiloj",

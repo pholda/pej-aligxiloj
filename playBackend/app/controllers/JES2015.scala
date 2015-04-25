@@ -2,33 +2,34 @@ package controllers
 
 import java.io.File
 import java.net.URL
-import java.text.DecimalFormat
 
 import com.google.gdata.util.ServiceForbiddenException
-import com.mongodb.casbah.MongoClient
-import com.mongodb.casbah.commons.MongoDBObject
-import org.joda.time.DateTime
 import pl.pej.malpompaaligxilo.form._
 import pl.pej.malpompaaligxilo.form.action.AddToGoogleSpreadsheetFormAction
-import pl.pej.malpompaaligxilo.form.field._
-import pl.pej.malpompaaligxilo.googleapi.{Spreadsheet, AccountConfig}
+import pl.pej.malpompaaligxilo.googleapi.{AccountConfig, Spreadsheet}
 import pl.pej.malpompaaligxilo.jes2015.Jes2015Aligxilo
-import pl.pej.malpompaaligxilo.util.DatesScala
+import pl.pej.malpompaaligxilo.util._
 import play.api.Play.current
-import play.api.libs.mailer.{Email, MailerPlugin}
 import play.api.mvc._
-import util.{SendMailFormAction, MongoInsertFormAction}
+import util.{MongoInsertFormAction, SendMailFormAction}
 import views._
+
+import scala.io.Source
 
 object JES2015 extends Controller {
   implicit val context = ScalaContext
-  
-  def index = Action {
+
+  implicit val poCfg = PoCfg.fromResources(getClass,
+    "eo" -> "/jes2015_eo.po",
+    "pl" -> "/jes2015_pl.po"
+  )
+
+  def index(implicit lang: Lang = "eo") = Action {
     val form = new Jes2015Aligxilo(field => Seq.empty)
-    Ok(html.jes2015aligxilo(form))
+    Ok(html.jes2015aligxilo(form, lang, poCfg))
   }
 
-  def submit = Action(parse.tolerantFormUrlEncoded) { implicit request =>
+  def submit(implicit lang: Lang = "eo") = Action(parse.tolerantFormUrlEncoded) { implicit request =>
     val post = request.body
     implicit val form = new Jes2015Aligxilo({field =>
       val y = post.getOrElse(field.name, post.getOrElse(field.name+"[]", Nil))
@@ -37,7 +38,7 @@ object JES2015 extends Controller {
 
     form.hasErrors match {
       case true =>
-        Ok(html.jes2015aligxilo(form))
+        Ok(html.jes2015aligxilo(form, lang, poCfg))
       case false =>
 
         implicit val accountConfig = AccountConfig(
@@ -69,13 +70,13 @@ object JES2015 extends Controller {
             "<tomasz.szymula@pej.pl>",
             "<piotr.holda@pej.pl>"
           ),
-          html = html.jes2015_aligxilo_mesagxo(form, "eo").body
+          html = html.jes2015_aligxilo_mesagxo(form, lang, poCfg).body
         )
 
         mongoInsert.run(form)
         sendMail.run(form)
 
-        Ok(html.jes2015_aligxilo_sukceso(form))
+        Ok(html.jes2015_aligxilo_sukceso(form, lang, poCfg))
     }
   }
 }

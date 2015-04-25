@@ -3,9 +3,11 @@
 # ~~~~
 
 # Home page
-GET         /jes2015               controllers.JES2015.index
+GET         /jes2015               controllers.JES2015.index(lang = "eo")
+GET         /jes2015/$lang<(pl|eo)>     controllers.JES2015.index(lang: String)
 
-POST        /jes2015/submit        controllers.JES2015.submit
+POST        /jes2015/submit        controllers.JES2015.submit(lang = "eo")
+POST        /jes2015/$lang<(pl|eo)>/submit        controllers.JES2015.submit(lang: String)
 
 GET         /semajnfino            controllers.Semajnfino.index
 POST        /semajnfino            controllers.Semajnfino.submit

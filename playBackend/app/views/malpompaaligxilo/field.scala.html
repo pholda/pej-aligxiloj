@@ -1,4 +1,5 @@
-@(field: pl.pej.malpompaaligxilo.form.Field[_])(implicit form: pl.pej.malpompaaligxilo.form.Form, lang: pl.pej.malpompaaligxilo.util.Lang)
+@(field: pl.pej.malpompaaligxilo.form.Field[_])(implicit form: pl.pej.malpompaaligxilo.form.Form, lang: pl.pej.malpompaaligxilo.util.Lang, poCfg: pl.pej.malpompaaligxilo.util.PoCfg)
+@import pl.pej.malpompaaligxilo.util.I18n
 @import pl.pej.malpompaaligxilo.form.errors.BadDateFormatError
 @import pl.pej.malpompaaligxilo.form.errors.NothingSelectedError
 @import pl.pej.malpompaaligxilo.form.errors.RequiredError
@@ -15,9 +16,9 @@
                 <dd class="error">
                 @{
                     field.validate.getOrElse("undefined") match {
-                        case RequiredError => "tiu ĉi kampo estas deviga"
-                        case NothingSelectedError => "nenio estis elektita"
-                        case BadDateFormatError => "malkorekta formo de dato"
+                        case RequiredError => I18n.t("tiu ĉi kampo estas deviga")
+                        case NothingSelectedError => I18n.t("nenio estis elektita")
+                        case BadDateFormatError => I18n.t("malkorekta formo de dato")
                         case CustomError(msg) => msg(lang)
                     }
                 }
@@ -26,6 +27,6 @@
         </dl>
     </label>
     <div class="col-sm-8">
-    @pl.pej.malpompaaligxilo.templates.html.field(field)
+    @pl.pej.malpompaaligxilo.templates.html.field(field)(form, lang)
     </div>
 </div>

@@ -1,7 +1,8 @@
-@(implicit form: pl.pej.malpompaaligxilo.jes2015.Jes2015Aligxilo, lang: pl.pej.malpompaaligxilo.util.Lang = "eo")
+@(implicit form: pl.pej.malpompaaligxilo.jes2015.Jes2015Aligxilo, lang: pl.pej.malpompaaligxilo.util.Lang = "eo", poCfg: pl.pej.malpompaaligxilo.util.PoCfg)
 @import views.html.malpompaaligxilo.field
+@import views.html.malpompaaligxilo.i18n
 <!DOCTYPE html>
-<html>
+<html lang="@lang">
     <head>
         <meta charset="UTF-8">
         <title>JES 2015 Aliĝilo</title>
@@ -18,7 +19,17 @@
     <body>
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
         <script type="text/javascript" src="@routes.Assets.at("jquery-ui-1.11.2.custom/jquery-ui.min.js")"></script>
-        <script type="text/javascript" src="@routes.Assets.at("jquery-ui-1.11.2.custom/i18n/datepicker-eo.js")"></script>
+
+        @{
+            lang match {
+                case "eo" =>
+                    Html(s"""<script type="text/javascript" src="${routes.Assets.at("jquery-ui-1.11.2.custom/i18n/datepicker-eo.js")}"></script>""")
+                case "pl" =>
+                    Html(s"""<script type="text/javascript" src="${routes.Assets.at("jquery-ui-1.11.2.custom/i18n/datepicker-pl.js")}"></script>""")
+                case _ =>
+            }
+        }
+
         <script type="text/javascript">
         $(function(){
             $('input[type=text].formDate' ).each(function() {
@@ -31,19 +42,18 @@
                 yearRange: $(this).data("yearrange")
                 });
             });
-            $.datepicker.regional[ "eo" ];
         })
-
         </script>
-
         <script type="text/javascript" src="/assets/javascripts/jes2015-fastopt.js"></script>
+        @jes2015po()
+        <div id="lingvoj"><a href="@routes.JES2015.index("eo")">Esperanto</a> | <a href="@routes.JES2015.index("pl")">polski</a></div>
         <p class="titolo text-center">JES 2015</p>
         @if(form.hasErrors) {
-            <div class="error text-center">okazis eraroj dum via aliĝo - bv. korekti ilin</div>
+            <div class="error text-center">@i18n("okazis eraroj dum via aliĝo - bv. korekti ilin")</div>
         }
-        <form id="aligxilo" action="@routes.JES2015.submit()" method="post" class="form-horizontal col-sm-offset-4 col-sm-8">
+        <form id="aligxilo" action="@routes.JES2015.submit(lang)" method="post" class="form-horizontal col-sm-offset-4 col-sm-7">
             <div class="row">
-                <h1>Personaj datumoj</h1>
+                <h1>@i18n("Personaj datumoj")</h1>
             </div>
             @field(form.personaNomo)
             @field(form.familiaNomo)
@@ -71,8 +81,9 @@
             @field(form.invitiloAdreso)
 
             @field(form.adresaro)
+            @field(form.aligxintoj)
             <div class="row">
-                <h1>Loĝado</h1>
+                <h1>@i18n("Loĝado")</h1>
             </div>
             @field(form.logxado)
             @field(form.logxadoGea)
@@ -81,7 +92,7 @@
             @field(form.cxeesto)
             @field(form.cxeestoElekto)
             <div class="row">
-                <h1>Manĝado</h1>
+                <h1>@i18n("Manĝado")</h1>
             </div>
             @field(form.matenmangxoj)
             @field(form.tagmangxoj)
@@ -94,7 +105,7 @@
 
             @field(form.mangxtipo2)
             <div class="row">
-                <h1>Pagado</h1>
+                <h1>@i18n("Pagado")</h1>
             </div>
             @field(form.pagado)
             @field(form.donacoKvoto)
@@ -102,8 +113,8 @@
             @field(form.donacoKialoKlarigo)
             @field(form.miPagos)
             <div class="row">
-                <h1>Dum la aranĝo</h1>
-                <h4>JES estas renkontiĝo, kie ricevas centran rolon la kontribuoj de la partoprenantoj. Tiu ĉi renkontiĝo estas por vi. La organizantoj donas la strukturon de la programoj, kaj la partoprenantoj kontribuas al la programeroj dum la semajno ne nur per la ĉeestado. Ni petas vin pripensi kiel vi povas mojosigi la etoson!</h4>
+                <h1>@i18n("Dum la aranĝo")</h1>
+                <h4>@i18n("JES estas renkontiĝo, kie ricevas centran rolon la kontribuoj de la partoprenantoj. Tiu ĉi renkontiĝo estas por vi. La organizantoj donas la strukturon de la programoj, kaj la partoprenantoj kontribuas al la programeroj dum la semajno ne nur per la ĉeestado. Ni petas vin pripensi kiel vi povas mojosigi la etoson!")</h4>
             </div>
             @field(form.ludejoKontribuo)
             @field(form.ludiMuzikilon)
@@ -114,29 +125,29 @@
             @field(form.gxeneralaHelpado)
 
             @field(form.programkontribuo)
-            @field(form.programkontribuo)
             <div class="row">
-                <h1>Komento kaj regularo</h1>
-                @*<h4>Bv. akcepti la regularon</h4>*@
+                <h1>@i18n("Komento kaj regularo")</h1>
+                <h4><a href="#">@i18n("La regularo legeblas ĉi tie")</a></h4>
             </div>
             @field(form.komento)
 
             @field(form.regularo)
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <input type="submit" value="aliĝu!" name="sendu" class="btn btn-default" />
+                    <input type="submit" value="@i18n("aliĝu!")" name="sendu" class="btn btn-default" />
                 </div>
             </div>
         </form>
         <div id="_kotizo" class="col-sm-3">
             <div class="form-group">
                 <div class="col-sm-12">
-                    <strong>Kalkulita kotizo:</strong>
+                    <strong>@i18n("Kalkulita kotizo"):</strong>
                     <span data-name="kotizo" class="formExpression"></span>
+                    <br><a href="#">@i18n("Legu pli pri la pagadosistemo ĉi tie.")</a>
                 </div>
             </div>
         </div>
-        <div class="plendu">Aliĝilo starigita per&nbsp;<em>MalpompaAliĝilo</em>. Bv.&nbsp;sendi plendojn al piotr.holda&nbsp;ĈE&nbsp;pej.pl&nbsp;.</div>
+        <div class="plendu col-xs-12">Aliĝilo starigita per&nbsp;<em>MalpompaAliĝilo</em>. Bv.&nbsp;sendi plendojn al piotr.holda&nbsp;ĈE&nbsp;pej.pl&nbsp;.</div>
         <script type="text/javascript">
         pl.pej.malpompaaligxilo.jes2015.Jes2015FormJS().main();
         </script>

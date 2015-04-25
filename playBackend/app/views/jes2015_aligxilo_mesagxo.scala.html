@@ -1,20 +1,19 @@
-@(implicit form: pl.pej.malpompaaligxilo.jes2015.Jes2015Aligxilo, lang: pl.pej.malpompaaligxilo.util.Lang = "eo")
+@(implicit form: pl.pej.malpompaaligxilo.jes2015.Jes2015Aligxilo, lang: pl.pej.malpompaaligxilo.util.Lang = "eo", poCfg: pl.pej.malpompaaligxilo.util.PoCfg)
 @import pl.pej.malpompaaligxilo.templates.html.fieldvalue
+@import views.html.malpompaaligxilo.i18n
+@import pl.pej.malpompaaligxilo.util.I18n
 <html>
     <head>
         <meta charset="UTF-8" />
     </head>
     <body>
 <h1>
-Saluton! Dankon por via aliĝo al JES en Eger, Hungario!
+@i18n("Saluton! Dankon por via aliĝo al JES en Eger, Hungario!")
 </h1>
-<h3>Sube vi vidas viajn datumojn. Bv. relegi kaj nepre skribu al @Html("jes@pej.pl") se io ne ĝustas, aŭ intertempe ŝanĝiĝas viaj mendoj.
-Tion vi povas fari ĝis la 1-a de decembro.<br/>
-Se vi ne ricevis konfirmon de la aliĝo, bv. kontroli vian retpoŝtan spamujon!<br/>
-Amike,<br/>
-la teamo de JES</h3>
+<h3>@Html(I18n.t("Sube vi vidas viajn datumojn. Bv. relegi kaj nepre skribu al jes@pej.pl se io ne ĝustas, aŭ intertempe ŝanĝiĝas viaj mendoj. Tion vi povas fari ĝis la 1-a de decembro.<br/> Se vi ne ricevis konfirmon de la aliĝo, bv. kontroli vian retpoŝtan spamujon!<br/> Amike,<br/>la teamo de JES"))
+</h3>
 
-    <h1>Personaj datumoj</h1>
+    <h1>@i18n("Personaj datumoj")</h1>
 @fieldvalue(form.personaNomo)
 @fieldvalue(form.familiaNomo)
 @fieldvalue(form.kromnomo)
@@ -38,8 +37,9 @@ la teamo de JES</h3>
 @fieldvalue(form.pasportovalideco)
 @fieldvalue(form.invitiloAdreso)
 @fieldvalue(form.adresaro)
+@fieldvalue(form.aligxintoj)
 
-    <h1>Loĝado</h1>
+    <h1>@i18n("Loĝado")</h1>
 @fieldvalue(form.logxado)
 @fieldvalue(form.logxadoGea)
 @fieldvalue(form.logxadoPrefero)
@@ -47,7 +47,7 @@ la teamo de JES</h3>
 @fieldvalue(form.cxeesto)
 @fieldvalue(form.cxeestoElekto)
 
-    <h1>Manĝado</h1>
+    <h1>@i18n("Manĝado")</h1>
 @fieldvalue(form.matenmangxoj)
 @fieldvalue(form.tagmangxoj)
 @fieldvalue(form.vespermangxoj)
@@ -57,7 +57,7 @@ la teamo de JES</h3>
 @fieldvalue(form.mangxtipoKlarigo)
 @fieldvalue(form.mangxtipo2)
 
-<h1>Pagado</h1>
+<h1>@i18n("Pagado")</h1>
 @fieldvalue(form.pagado)
 @fieldvalue(form.donacoKvoto)
 @fieldvalue(form.donacoKialo)
@@ -65,7 +65,7 @@ la teamo de JES</h3>
 @fieldvalue(form.kotizo)
 @fieldvalue(form.miPagos)
 
-    <h1>Dum la aranĝo</h1>
+    <h1>@i18n("Dum la aranĝo")</h1>
 @fieldvalue(form.ludejoKontribuo)
 @fieldvalue(form.ludiMuzikilon)
 @fieldvalue(form.kielLudos)
@@ -75,7 +75,8 @@ la teamo de JES</h3>
 @fieldvalue(form.gxeneralaHelpado)
 @fieldvalue(form.programkontribuo)
 
-    <h1>Komento</h1>
+    <h1>@i18n("Komento")</h1>
 @fieldvalue(form.komento)
+@fieldvalue(form.regularo)
     </body>
 </html>
