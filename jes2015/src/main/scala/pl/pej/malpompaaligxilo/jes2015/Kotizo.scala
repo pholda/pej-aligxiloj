@@ -14,10 +14,10 @@ case class Kotizo(kotizoj: ListMap[KotizoComponent, Euroj], sumo: Euroj) extends
     } else {
       (kotizoj.filterNot{case (_, prezo) => prezo == 0} map {
         case (single: SingleKotizoComponent, prezo) =>
-          s"<li>${single.description(lang)}:&nbsp;%.2f€</li>".format(prezo)
+          s"<dt>${single.description(lang)}</dt><dd>%.2f€</dd>".format(prezo)
         case (multimple: MultimpleKotizoComponent, prezo) =>
-          s"<li>${multimple.description(lang)} (${I18n.t("%d foje %.2f€").format(multimple.pieces, multimple.singlePrice)}):&nbsp;%.2f€</li>".format(prezo)
-      }).mkString("<ul>", "", "</ul>") + s"</br><strong>${I18n.t("Sume:")}</strong>&nbsp;%.2f€".format(sumo)
+          s"<dt>${multimple.description(lang)} (${I18n.t("%d foje %.2f€").format(multimple.pieces, multimple.singlePrice)})</dt><dd>%.2f€</dd>".format(prezo)
+      }).mkString("<dl>", "", "</dl>") + s"<hr /><h3>${I18n.t("Sume:")}&nbsp;%.2f€</h3>".format(sumo)
     }
   }
 }

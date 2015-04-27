@@ -432,7 +432,7 @@ msgid "Rabato pro bonvola tuja tuta pago (dankon!)"
 msgstr "Rabat za wpłatę całej sumy (dziękujemy!)"
 
 msgid "%d foje %.2f€"
-msgstr "%d foje %.2f€"
+msgstr "%d razy %.2f€"
 
 msgid "Sume:"
 msgstr "w sumie:"
@@ -505,3 +505,6 @@ msgstr "Czy chcesz pojawić się na liście zapisanych?"
 
 msgid "La regularo legeblas ĉi tie"
 msgstr "Regulamin możesz przeczytać tutaj."
+
+msgid "Mi permesas uzadon de miaj personaj datumoj en celo de organizado de la evento"
+msgstr "Wyrażam zgodę na przetwarzanie moich danych osobowych w celach związanych z rejestracją i organizacją wydarzenia"

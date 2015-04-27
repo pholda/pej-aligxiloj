@@ -500,3 +500,6 @@ msgstr "La regularo legeblas ĉi tie"
 
 msgid "Lando"
 msgstr "Lando"
+
+msgid "Mi permesas uzadon de miaj personaj datumoj en celo de organizado de la evento"
+msgstr "Mi permesas uzadon de miaj personaj datumoj en celo de organizado de la evento"

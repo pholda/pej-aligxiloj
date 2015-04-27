@@ -49,7 +49,7 @@
         <script type="text/javascript" src="/assets/javascripts/jes2015-fastopt.js"></script>
         @jes2015po()
         <div id="lingvoj"><a href="@routes.JES2015.index("eo")">Esperanto</a> | <a href="@routes.JES2015.index("hu")">magyar</a> | <a href="@routes.JES2015.index("pl")">polski</a></div>
-        <p class="titolo text-center">JES 2015</p>
+        @*<p class="titolo text-center">JES 2015</p>*@
         @if(form.hasErrors) {
             <div class="error text-center">@i18n("okazis eraroj dum via aliĝo - bv. korekti ilin")</div>
         }
@@ -133,6 +133,7 @@
             </div>
             @field(form.komento)
 
+            @field(form.permeso)
             @field(form.regularo)
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
@@ -143,7 +144,7 @@
         <div id="_kotizo" class="col-sm-3">
             <div class="form-group">
                 <div class="col-sm-12">
-                    <strong>@i18n("Kalkulita kotizo"):</strong>
+                    <h2>@i18n("Kalkulita kotizo"):</h2>
                     <span data-name="kotizo" class="formExpression"></span>
                     <br><a href="http://jes.pej.pl/2015/?page_id=42">@i18n("Legu pli pri la pagadosistemo ĉi tie.")</a>
                 </div>

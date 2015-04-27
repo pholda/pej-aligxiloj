@@ -28,7 +28,7 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
       mangxadoBalo :: matenmangxoj :: tagmangxoj :: vespermangxoj :: matenmangxoPrefero :: mangxtipo :: mangxtipoKlarigo ::
       mangxtipo2  :: ludejoKontribuo :: ludiMuzikilon :: kielLudos :: muzikgrupoNomo :: miKunportos :: dejxoriHelpo :: gxeneralaHelpado ::
       programkontribuo :: pagado :: donacoKvoto :: donacoKialo :: donacoKialoKlarigo :: kotizo :: miPagos ::
-      komento :: regularo :: Nil
+      komento :: permeso :: regularo :: Nil
 
   val aligxDato = Field(
     name = "aligxDato",
@@ -663,6 +663,11 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
     caption = I18n.po("Komento"),
     description = Some(I18n.po("Ĉi tie vi povas lasi mesaĝon al la organizantoj aŭ aldoni komentojn al via aliĝo! Dankon!")),
     `type` = StringField(textarea = true)
+  )
+  val permeso = Field(
+    name = "permeso",
+    caption = I18n.po("Mi permesas uzadon de miaj personaj datumoj en celo de organizado de la evento"),
+    `type` = CheckboxField(default = true)
   )
   val regularo = Field(
     name = "regularo",
