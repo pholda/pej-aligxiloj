@@ -1,0 +1,512 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"X-Language: hu\n"
+"Project-Id-Version: JES aligxilo\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: St. <steleto@gmail.com>\n"
+"Language-Team: JES\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: hu\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+msgid "Persona Nomo"
+msgstr "Keresztnév"
+
+msgid "por identigilo kaj adresaro"
+msgstr "a címjegyzékhez, s hogy be tudjunk azonosítani"
+
+msgid "Familia Nomo"
+msgstr "Vezetéknév"
+
+msgid "Kromnomo"
+msgstr "Becenév"
+
+msgid "Kion vi ŝatus aperigi sur via ŝildo?"
+msgstr "Mi legyen a névkártyádon?"
+
+msgid "Naskiĝdato"
+msgstr "Születésnap"
+
+msgid "Vi estos sub 18 dum la JES, vi bezonas sendi skanitan gepatran permesilon al la organizantoj pri via partopreno, se vi venos sole al la renkontiĝo."
+msgstr "A JES közben még 18 év alatt vagy, ezért küldened kell egy szkennelt engedélyt a szüleidtől/gondviselődtől, ha egyedül jössz a rendezvényre."
+
+msgid "Genro"
+msgstr "Nem"
+
+msgid "Ina"
+msgstr "Nő"
+
+msgid "Malina"
+msgstr "Férfi"
+
+msgid "Alia"
+msgstr "Egyéb"
+
+msgid "Retpoŝtadreso"
+msgstr "E-mail cím"
+
+msgid "Tujmesaĝilo"
+msgstr "Azonnali üzenetküldő"
+
+msgid "ekz. Skype: …"
+msgstr "pl. Skype"
+
+msgid "FB-adreso"
+msgstr "FB-cím"
+
+msgid "Telefonnumero"
+msgstr "Telefonszám"
+
+msgid "internacia formo (ekz. +36 …)"
+msgstr "nemzetközi formátumban (pl. +36 …)"
+
+msgid "Ni uzos ĝin nur por organizaj celoj (ekz. por retrovi vin, se vi perdiĝus)."
+msgstr "Kizárólag szervezői célokra használjuk fel (pl. hogy fel tudjunk hívni, ha elveszel kirándulás közben)."
+
+msgid "Adreso"
+msgstr "Cím"
+
+msgid "Por adresaro."
+msgstr "A címjegyzékhez, amit a rendezvény után küldünk ki."
+
+msgid "Mi estas plentempa studento/lernanto"
+msgstr "Nappali tagozatos diák/tanuló vagyok."
+
+msgid "Mi studas/lernas"
+msgstr "Ezen a szakon tanulok"
+
+msgid "Mi bezonas invitilon"
+msgstr "Meghívólevélre van szükségem"
+
+msgid "Se vi bezonas invitilon, indiku ĉi tie plej malfrue ĝis la 1a de septembro. Se oni post tio ne kontaktus vin ene de unu semajno, bv. skribi al la respondeculo (Saci)."
+msgstr "Ha szükséged van meghívólevélre, akkor azt legkésőbb szeptember 1-jéig jelezd nekünk. Ha nem vesszük fel veled a kapcsolatot egy héten belül, akkor keresd a meghívólevekért felelős szervezőt: Sacit."
+
+msgid "ne"
+msgstr "nem"
+
+msgid "jes"
+msgstr "igen"
+
+msgid "Persona Nomo"
+msgstr "Keresztnév"
+
+msgid "por invitilo"
+msgstr "a meghívólevélhez"
+
+msgid "Numero de pasporto"
+msgstr "Az útlevél száma"
+
+msgid "Eldondato de pasporto"
+msgstr "Az útlevél kiadásának ideje"
+
+msgid "Pasporto eldonita de"
+msgstr "Az útlevelet kiadta"
+
+msgid "Valideco de pasporto"
+msgstr "Az útlevél érvényes"
+
+msgid "Adreso por sendi la invitilon."
+msgstr "Cím, ahova küldjük a meghívólevelet."
+
+msgid "Adresaro"
+msgstr "Címjegyzék"
+
+msgid "Post la aranĝo ni sendas al la partoprenantoj adresaron. Ĉu vi ŝatus aperi en ĝi? Se jes, kun kiuj datumoj?"
+msgstr "A rendezvény után küldünk egy címjegyzéket a résztvevők címeivel. Szeretnél benne lenni? Ha igen, akkor …"
+
+msgid "Loĝado"
+msgstr "Szállás"
+
+msgid "2/3 lita kun duŝejo"
+msgstr "2/3 ágyas szoba, zuhannyal"
+
+msgid "4/5/6 lita kun duŝejo"
+msgstr "4/5/6 ágyas szoba, zuhannyal"
+
+msgid "4 lita sen duŝejo"
+msgstr "4 ágyas szoba zuhany nélkül"
+
+msgid "14 lita kun duŝejo en apuda konstruaĵo"
+msgstr "14 ágyas szoba zuhannyal "
+
+msgid "amasloĝejo sur matraco"
+msgstr "tömegszállás matracon"
+
+msgid "amasloĝejo surplanke"
+msgstr "tömegszállás matrac nélkül"
+
+msgid "Ĉu via ĉambro rajtas esti gea?"
+msgstr "Szeretnéd, hogy a szobád koedukált legyen?"
+
+msgid "Mi preferas loĝi en … ĉambro."
+msgstr "Szívesebben lakom … szobában."
+
+msgid "egalas"
+msgstr "mindegy"
+
+msgid "trankvila"
+msgstr "nyugodt"
+
+msgid "diboĉa"
+msgstr "bulizós"
+
+msgid "Mi preferus loĝi kun…"
+msgstr "Vele szeretnék lakni…"
+
+msgid "Ĉeesto"
+msgstr "Részvétel"
+
+msgid "ĉiun tagon"
+msgstr "minden nap"
+
+msgid "partatempe"
+msgstr "csak részidőben"
+
+msgid "nur silvestra balo"
+msgstr "csak szilveszteri bulin"
+
+msgid "Bv. indiki la TRANOKTOJN kiam vi partoprenos."
+msgstr "Kérjük jelöld be, hogy mely éjszakákon alszol."
+
+msgid "Matenmanĝoj"
+msgstr "Reggelik"
+
+msgid "Se vi elektas tion vi matenmanĝos post ĉiu via tranokto."
+msgstr "Ha ezt választod, akkor minden kiválasztott éjszaka után kapsz reggelit."
+
+msgid "Tagmanĝoj"
+msgstr "Ebédek"
+
+msgid "Se vi elektas tion vi tagmanĝos inter ĉiu via tranokto."
+msgstr "Ha ezt választod, akkor minden eltöltött éjszakák közti napon ebédelsz."
+
+msgid "vespermangxoj"
+msgstr "vacsorák"
+
+msgid "Se vi elektas tion vi vespermanĝos antaŭ ĉiu via tranokto."
+msgstr "Ha ezt választod, akkor vacsorázni fogsz minden eltöltött éjszaka előtt."
+
+msgid "Manĝtipo por la silvestra balo"
+msgstr "A szilveszter bálon ilyen típusú ételt eszem"
+
+msgid "Eĉ se vi estas memzorganto, ni bezonas scii vian kutiman manĝtipon por la silvestra balo."
+msgstr "Akkor is ha önellátó vagy a héten, tudnunk kell, hogy milyen típusú ételt kérsz a szilveszteri bálon."
+
+msgid "Mi preferas matenmanĝi…"
+msgstr "Szívesebben reggelizem…"
+
+msgid "ne gravas"
+msgstr "mindegy"
+
+msgid "dolĉe"
+msgstr "édeset"
+
+msgid "sale"
+msgstr "sósat"
+
+msgid "Mi volas manĝi…"
+msgstr "Milyen típusú ételt kérek…"
+
+msgid "viande"
+msgstr "húsost"
+
+msgid "vegetare"
+msgstr "vegetáriánust"
+
+msgid "vegane"
+msgstr "vegánt"
+
+msgid "alimeniere/speciale"
+msgstr "másfélét/speciálisat"
+
+msgid "Baze temas pri alergio aŭ trosentemo, ekz. kontraŭ gluteno k.s. Bv. do ĉi tie vortigi, kial kaj kian specialan manĝon vi bezonas."
+msgstr "Ha bármi ételallergiád van, pl. glutén, akkor kérjük, írd ide, hogy mire figyeljünk oda, milyen típusú speciális étkezést kérsz."
+
+msgid "Mi volas havi…"
+msgstr "Inkább szeretnék…"
+
+msgid "Ni planas la menuon laŭ la respondoj, tio estas nur por informiĝi, vi ne nepre ricevos laŭ via elekto"
+msgstr "A válaszok alapján tervezzük meg a menüt, ezt információképpen kérdezzük, nem feltétlenül lesz a menü a választásod szerint"
+
+msgid "viandon kun viando! (mi volas havi viandaĵon por ĉiu plado)"
+msgstr "húst hússal! (Minden étkezésnél szeretnék húst enni.)"
+
+msgid "viandon kun aliaj nutraĵoj! (ĉiutage viandon, sed ne nur viandajn pladojn)"
+msgstr "húst, de nem minden étkezésnél. (Minden nap lesz húsos étel, de 1-2 vegetariánus is.)"
+
+msgid "Mi kontribuos al la ludejo per"
+msgstr "Hozzájárulok a játéksarokhoz"
+
+msgid "Mi pretas kunporti mia(j)n plej ŝatata(j)n ludilojn por la ludejo."
+msgstr "Szívesen elhozom a kedvenc társasjátékaimat, kártyámat, fejtörőimet."
+
+msgid "Mi pretas gvidi ludsesiojn en la ludejo."
+msgstr "Szívesen leszek játékvezető, tanítom meg a kedvenc társas- vagy kártyajátékomat."
+
+msgid "Ĉu vi kantas, aŭ ludas iun muzikilon, kiun vi volonte kunportus?"
+msgstr "Énekelsz, játszol bármilyen hangszeren, amit szívesen elhozol magaddal?"
+
+msgid "Kiel vi volonte uzus vian kantkapablon / muzikilon?"
+msgstr "Szívesen énekelnél, zenélnél egyedül vagy együtt másokkal valamilyen formában?"
+
+msgid "Mi ne certas, sed mi volonte ludus aŭ sole, aŭ kune kun kelkaj aliaj dum la semajno"
+msgstr "Még nem vagyok benne biztos, de szívesen játszom egyedül vagy együtt másokkal a rendezvény közben."
+
+msgid "Mi pretas prelegi pri kantado / muzikiloj / muziko / io ajn"
+msgstr "Szívesen tartok előadást az éneklésről / hangszerről / zenéről stb."
+
+msgid "Mi pretas gvidi kurson pri kantado / muzikilludado"
+msgstr "Szívesen vezetek kórust / kis zenekart"
+
+msgid "Mi pretas fari 20-30 minutan gufujan koncerteton"
+msgstr "Szívesen csinálok egy 20-30 perces koncertet a teaházban."
+
+msgid "Mi pretas aŭ sole, aŭ kun aliaj (propra muzikgrupo, spontanea ludado ktp.) fari 45-60 minutan koncerton, kiel vespera programo"
+msgstr "Szívesen csinálok egyedül vagy másokkal (saját zenekarral vagy spontán) egy 45-60 perces koncertet, mint esti program."
+
+msgid "Detaloj de artisto/muzikgrupo"
+msgstr "Írj részleteket a művészetedről / zenédről!"
+
+msgid "Nomo, kiom longe la koncerto daŭros, kiajn teĥnikaĵojn vi bezonas ktp."
+msgstr "Név, milyen hosszú koncertet tudsz adni, milyen technikai igényeid vannak stb."
+
+msgid "Kiun muzikilon vi kunportos"
+msgstr "Milyen hangszert hozol"
+
+msgid "Gitaron"
+msgstr "Gitárt"
+
+msgid "Violonon"
+msgstr "Hegedűt"
+
+msgid "Transversan fluton"
+msgstr "Fuvolát"
+
+msgid "Bekfluton"
+msgstr "Furuját"
+
+msgid "Ukulelon"
+msgstr "Ukulelét"
+
+msgid "Alian muzikilon"
+msgstr "Más hangszeret"
+
+msgid "Mi ankoraŭ ne decidis, sed mi certe kunportos ion"
+msgstr "Még nem döntöttem, de biztos hozok valamit"
+
+msgid "Mi proponas"
+msgstr "Ajánlom"
+
+msgid "deĵori en la gufujo"
+msgstr "ügyelek a teaházban"
+
+msgid "deĵori en la trinkejo"
+msgstr "ügyelek a sörözőben"
+
+msgid "Ĝenarala helpado"
+msgstr "Általános segítő leszek"
+
+msgid "Se vi volonte helpos al ni pri ĝeneralaj taskoj bv. ĉi tie indiki (ekzemple per pakado de tabloj en la ejo, gvidado de la grupo al la ekstera halo)."
+msgstr "Ha szívesen segítesz nekünk általános dolgokkal, kérjük jelezd itt (pl. asztalok pakolása, termek rendezése, csoportvezetés a kinti helyszínre)."
+
+msgid "Programkontribuo"
+msgstr "Programfelajánlás"
+
+msgid "Se vi ŝatus fari programeron, bv. skribu ĉi tien mallonge vian proponon! Vi ricevos retleteron de la organizantoj responde al via propono."
+msgstr "Ha szeretnél programot felajánlani, írd ide röviden az ötleted! Kapni fogsz a szervezőktől egy levelet a felajánlásoddal kapcsolatban."
+
+msgid "Pagado"
+msgstr "Fizetés"
+
+msgid "UEA-konto (jesm-f)"
+msgstr "UEA-fiók (jesm-f)"
+
+msgid "la hungara konto"
+msgstr "a magyar fiók"
+
+msgid "la pola konto"
+msgstr "a lengyel fiók"
+
+msgid "Mi ŝatus donaci al JES 2015…"
+msgstr "Szeretnék ajándékozni a JES 2015-nek"
+
+msgid "entajpu sumon (en eŭroj)"
+msgstr "írd be az összeget (euróban)"
+
+msgid "Se vi ŝatus subteni la eventon per iom da mono, ĝi certe bonvenas. :) Vi eĉ povas indiki, por kia celo ni elspezu ĝin!"
+msgstr "Ha szeretnéd a rendezvényt támogatni egy kis pénzzel, azt nagyon szívesen vesszük. :) Még azt is meg tudod mondani, hogy mire költsük el!"
+
+msgid "Mi ŝatus donaci por"
+msgstr "Erre szeretnék ajándékozni"
+
+msgid "subteni malriĉajn junajn partoprenantojn"
+msgstr "szegényebb, fiatal résztvevőket támogatni"
+
+msgid "pli riĉigan programon"
+msgstr "gazdagabb programot szeretnék"
+
+msgid "alia"
+msgstr "más"
+
+msgid "Bv klarigi."
+msgstr "Köszönöm magyarazni"
+
+msgid "Kalkulita kotizo"
+msgstr "A kiszámolt részvételi díj"
+
+msgid "Ene de la nuna aliĝperiodo mi pagos.."
+msgstr "Ebben a jelentkezési kategóriában ennyit fizetek"
+
+msgid "Se vi pagos la tutan kotizon ĝis la 31-a de aŭgusto, vi ricevos rabaton je 5€"
+msgstr "Ha a teljes részvételi díjad befizeted augusztus 31-ig, akkor kapsz 5 euró kedvezményt."
+
+msgid "tutan sumon por helpi en organizado kaj ĝui 5-eŭran rabaton"
+msgstr "a teljes részvételi díjat, hogy segítsem a szervezést és kapjak 5 euró kedvezményt"
+
+msgid "nur necesan antaŭpagon (40 eŭr)"
+msgstr "a kötelező előfizetési díjat: 40 eurót"
+
+msgid "Komento"
+msgstr "Megjegyzések"
+
+msgid "Ĉi tie vi povas lasi mesaĝon al la organizantoj aŭ aldoni komentojn al via aliĝo! Dankon!"
+msgstr "Itt tudsz üzenetet hagyni a szervezőknek vagy további megjegyzéseket fűzni a részvételi lapodhoz! Köszönjük!"
+
+msgid "Mi akceptas la regularon de la aranĝo"
+msgstr "Elfogadom a részvételi feltételeket."
+
+msgid "vi devas akcepti la regularon!"
+msgstr "El kell fogadnod a részvételi feltételeket!"
+
+msgid "aliĝu!"
+msgstr "jelentkezz!"
+
+msgid "bv. plenigi la formularon por kalkuli kotizon!"
+msgstr "Kérjük töltsd ki a jelentkezési lapot, hogy lásd mennyi a részvételi díjad!"
+
+msgid "Programkotizo"
+msgstr "Program költségek"
+
+msgid "Matenmanĝoj"
+msgstr "Reggelik"
+
+msgid "Tagmanĝoj"
+msgstr "Ebédek"
+
+msgid "Tagmanĝoj"
+msgstr "Ebédek"
+
+msgid "Vespermanĝoj"
+msgstr "Vacsorák"
+
+msgid "Ĉambro kun propra duŝejo"
+msgstr "Szoba saját zuhanyzóval"
+
+msgid "Dulita krompago"
+msgstr "Kétágyas szoba pluszköltsége"
+
+msgid "Ĉambro kun propra duŝejo (4-6 persona)"
+msgstr "Szoba saját zuhanyzóval (4-6 személyes)"
+
+msgid "Ĉambro kun koridora duŝejo"
+msgstr "Szoba zuhanyzóval a folyosón"
+
+msgid "Amasejo"
+msgstr "Tömegszállás"
+
+msgid "Invitletero"
+msgstr "Meghívólevél"
+
+msgid "Imposto por hungara ŝtato"
+msgstr "IFA"
+
+msgid "Balokotizo"
+msgstr "Bál részveltéli díj"
+
+msgid "Donaco al JES 2015"
+msgstr "Ajándék a JES 2015"
+
+msgid "Rabato pro bonvola tuja tuta pago (dankon!)"
+msgstr "Kedvezmény a teljes összeg azonnali befizetéséért (köszönjük!)"
+
+msgid "%d foje %.2f€"
+msgstr "%d szer %.2f€"
+
+msgid "Sume:"
+msgstr "Összeg:"
+
+msgid "okazis eraroj dum via aliĝo - bv. korekti ilin"
+msgstr "hibák történtek a jelentkezésed során - kérjük javítsd ki őket"
+
+msgid "tiu ĉi kampo estas deviga"
+msgstr "a mező kitöltése kötelező"
+
+msgid "nenio estis elektita"
+msgstr "semmi nem lett kiválasztva"
+
+msgid "malkorekta formo de dato"
+msgstr "helytelen dátum (rossz formátum)"
+
+msgid "Personaj datumoj"
+msgstr "Személyes adatok"
+
+msgid "Loĝado"
+msgstr "Szállás"
+
+msgid "Manĝado"
+msgstr "Étkezés"
+
+msgid "Pagado"
+msgstr "Fizetés"
+
+msgid "Dum la aranĝo"
+msgstr "Rendezvény közben"
+
+msgid "Komento kaj regularo"
+msgstr "Megjegyzés és szabályzat"
+
+msgid "JES estas renkontiĝo, kie ricevas centran rolon la kontribuoj de la partoprenantoj. Tiu ĉi renkontiĝo estas por vi. La organizantoj donas la strukturon de la programoj, kaj la partoprenantoj kontribuas al la programeroj dum la semajno ne nur per la ĉeestado. Ni petas vin pripensi kiel vi povas mojosigi la etoson!"
+msgstr "A JES az egy olyan rendezvény, ahol központi szerepet kap a résztvevők hozzájárulása a heti programhoz. Ez a rendezvény neked szól! A szervezők adják a program szerkezetét, s a résztvevők hozzájárulnak ehhez, de nem csak a részvételükkel. Kérjük, gondold ki, hogy te mivel tudnád szuperebbé tenni a hangulatot a héten!"
+
+msgid "Saluton! Dankon por via aliĝo al JES en Eger, Hungario!"
+msgstr "Szia! Köszönjük a jelentkezésed az egri JES-re!"
+
+msgid "Sube vi vidas viajn datumojn. Bv. relegi kaj nepre skribu al jes@pej.pl se io ne ĝustas, aŭ intertempe ŝanĝiĝas viaj mendoj. Tion vi povas fari ĝis la 1-a de decembro.<br/> Se vi ne ricevis konfirmon de la aliĝo, bv. kontroli vian retpoŝtan spamujon!<br/> Amike,<br/>la teamo de JES"
+msgstr "Lent látod az adataid. Kérjük, olvasd át őket újra, s mindenféleképpen írj a jes@pej.pl címre, ha valami nem helyes, vagy ha időközben megváltoztatnád a rendelésed. Ezt december 1-jéig tudod megtenni. <br/> Ha nem kapsz visszaigazolást a jelentkezésedről, akkor kérjük, ellenőrizd a spam mappádat! </br/> Barátsággal,<br/> a JES csapata"
+
+msgid "yes"
+msgstr "igen"
+
+msgid "no"
+msgstr "nem"
+
+msgid "(nothing)"
+msgstr "(semmi)"
+
+msgid "bv. elekti landon"
+msgstr "Kérünk választani országot"
+
+msgid "Legu pli pri la pagadosistemo ĉi tie."
+msgstr "Olvass a rendezvény költségeiről részletesen itt."
+
+msgid "jes - nomo kaj familanomo"
+msgstr "igen - vezetéknév és keresztnév"
+
+msgid "jes - nur nomo"
+msgstr "igen - csak keresztnév"
+
+msgid "Listo de aliĝintoj"
+msgstr "Jelentkezők lista"
+
+msgid "Ĉu vi volas aperi en la listo de aliĝintoj?"
+msgstr "Szeretnél megjelenni a résztvevők listájában?"
+
+msgid "La regularo legeblas ĉi tie"
+msgstr "A szabályzat itt olvasható"
+
+msgid "Lando"
+msgstr "Ország"

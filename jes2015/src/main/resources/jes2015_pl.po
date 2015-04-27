@@ -2,42 +2,50 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "X-Language: pl\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
 
 msgid "Persona Nomo"
 msgstr "Imię"
 
 msgid "por identigilo kaj adresaro"
-msgstr "xpor identigilo kaj adresaro"
+msgstr "do identyfikatora i księgi adresowej"
 
 msgid "Familia Nomo"
 msgstr "Nazwisko"
 
 msgid "Kromnomo"
-msgstr "Pseudonim"
+msgstr "Przezwisko"
 
 msgid "Kion vi ŝatus aperigi sur via ŝildo?"
-msgstr "xKion vi ŝatus aperigi sur via ŝildo?"
+msgstr "Jakie chcesz mieć imię na identyfikatorze?"
 
 msgid "Naskiĝdato"
 msgstr "Data urodzenia"
 
 msgid "Vi estos sub 18 dum la JES, vi bezonas sendi skanitan gepatran permesilon al la organizantoj pri via partopreno, se vi venos sole al la renkontiĝo."
-msgstr "xVi estos sub 18 dum la JES, vi bezonas sendi skanitan gepatran permesilon al la organizantoj pri via partopreno, se vi venos sole al la renkontiĝo."
+msgstr "Masz poniżej 18 lat, musisz wysłać zeskanowaną zgodzę na udział w JESie podpisaną przez rodziców, jeśli przyjedziesz na zjazd sam."
 
 msgid "Genro"
 msgstr "Płeć"
 
 msgid "Ina"
-msgstr "Żeńska"
+msgstr "Kobieta"
 
 msgid "Malina"
-msgstr "Męska"
+msgstr "Mężczyzna"
 
 msgid "Alia"
-msgstr "Inna"
+msgstr "Inne"
 
 msgid "Retpoŝtadreso"
-msgstr "Adres e-mail"
+msgstr "Adres pocztowy"
 
 msgid "Tujmesaĝilo"
 msgstr "Komunikator"
@@ -46,34 +54,34 @@ msgid "ekz. Skype: …"
 msgstr "np. Skype: …"
 
 msgid "FB-adreso"
-msgstr "adres Facebook"
+msgstr "Profil FB"
 
 msgid "Telefonnumero"
 msgstr "Numer telefonu"
 
 msgid "internacia formo (ekz. +36 …)"
-msgstr "format międzynarodowy (np. +48 …)"
+msgstr "międzynarodowy (np. +48 …)"
 
 msgid "Ni uzos ĝin nur por organizaj celoj (ekz. por retrovi vin, se vi perdiĝus)."
-msgstr "Zostanie użyty tylko w celach organizacyjnych (np. w przypadku, gdybyś się zgubił)."
+msgstr "Użyjemy go jedynie w celach organizacyjnych (np. by odnaleźć cię, jeśli się zgubisz)."
 
 msgid "Adreso"
 msgstr "Adres"
 
 msgid "Por adresaro."
-msgstr "xPor adresaro."
+msgstr "Do księgi adresów."
 
 msgid "Mi estas plentempa studento/lernanto"
-msgstr "xMi estas plentempa studento/lernanto"
+msgstr "Jestem studentem/uczniem."
 
 msgid "Mi studas/lernas"
-msgstr "xMi studas/lernas"
+msgstr "Studiuję/uczę się"
 
 msgid "Mi bezonas invitilon"
 msgstr "Potrzebuję zaproszenia"
 
 msgid "Se vi bezonas invitilon, indiku ĉi tie plej malfrue ĝis la 1a de septembro. Se oni post tio ne kontaktus vin ene de unu semajno, bv. skribi al la respondeculo (Saci)."
-msgstr "xSe vi bezonas invitilon, indiku ĉi tie plej malfrue ĝis la 1a de septembro. Se oni post tio ne kontaktus vin ene de unu semajno, bv. skribi al la respondeculo (Saci)."
+msgstr "Jeśli potrzebujesz zaproszenia, zaznacz tutaj najpóźniej do 1 września.  Jeśli po zapisach nikt nie skontaktuje się z tobą w ciągu tygodnia, wyślij wiadomość do osoby odpowiedzialnej (Saci)."
 
 msgid "ne"
 msgstr "nie"
@@ -81,8 +89,11 @@ msgstr "nie"
 msgid "jes"
 msgstr "tak"
 
+msgid "Persona Nomo"
+msgstr "Imię"
+
 msgid "por invitilo"
-msgstr "xpor invitilo"
+msgstr "do zaproszenia"
 
 msgid "Numero de pasporto"
 msgstr "Numer paszportu"
@@ -94,376 +105,376 @@ msgid "Pasporto eldonita de"
 msgstr "Paszport wydany przez"
 
 msgid "Valideco de pasporto"
-msgstr "Ważność paszportu"
+msgstr "Data ważności paszportu"
 
 msgid "Adreso por sendi la invitilon."
-msgstr "Adres do wysłania zaproszenia."
+msgstr "Adres do wysyłki zaproszenia."
 
 msgid "Adresaro"
-msgstr "xAdresaro"
+msgstr "Księga adresów"
 
 msgid "Post la aranĝo ni sendas al la partoprenantoj adresaron. Ĉu vi ŝatus aperi en ĝi? Se jes, kun kiuj datumoj?"
-msgstr "xPost la aranĝo ni sendas al la partoprenantoj adresaron. Ĉu vi ŝatus aperi en ĝi? Se jes, kun kiuj datumoj?"
+msgstr "Po zjeździe rozsyłamy uczestnikom księgę adresową. Chesz się w niej pojawić? Jeśli tak, z jakimi danymi?"
 
 msgid "Loĝado"
-msgstr "xLoĝado"
+msgstr "Zakwaterowanie"
 
 msgid "2/3 lita kun duŝejo"
-msgstr "x2/3 lita kun duŝejo"
+msgstr "2/3 łóżkowy z prysznicem"
 
 msgid "4/5/6 lita kun duŝejo"
-msgstr "x4/5/6 lita kun duŝejo"
+msgstr "4/5/6 łóżkowy z prysznicem"
 
 msgid "4 lita sen duŝejo"
-msgstr "x4 lita sen duŝejo"
+msgstr "4 łóżkowy bez prysznica"
 
 msgid "14 lita kun duŝejo en apuda konstruaĵo"
-msgstr "x14 lita kun duŝejo en apuda konstruaĵo"
+msgstr "14 łóżkowy z prysznicem w sąsiednim bydunku"
 
 msgid "amasloĝejo sur matraco"
-msgstr "xamasloĝejo sur matraco"
+msgstr "sala wspólna, na materacu"
 
 msgid "amasloĝejo surplanke"
-msgstr "xamasloĝejo surplanke"
+msgstr "sala wspólna, na podłodze"
 
 msgid "Ĉu via ĉambro rajtas esti gea?"
-msgstr "xĈu via ĉambro rajtas esti gea?"
+msgstr "Czy twój pokój ma być koedukacyjny?"
 
 msgid "Mi preferas loĝi en … ĉambro."
-msgstr "xMi preferas loĝi en … ĉambro."
+msgstr "Chciałbym mieszkać w … pokoju."
 
 msgid "egalas"
-msgstr "xegalas"
+msgstr "obojętne"
 
 msgid "trankvila"
-msgstr "xtrankvila"
+msgstr "spokojnym"
 
 msgid "diboĉa"
-msgstr "z ochlaptusami"
+msgstr "imprezowym"
 
 msgid "Mi preferus loĝi kun…"
-msgstr "xMi preferus loĝi kun…"
+msgstr "Chcę mieszkać z …"
 
 msgid "Ĉeesto"
-msgstr "xĈeesto"
+msgstr "Czas pobytu"
 
 msgid "ĉiun tagon"
-msgstr "xĉiun tagon"
+msgstr "wszystkie dni"
 
 msgid "partatempe"
-msgstr "xpartatempe"
+msgstr "określony czas"
 
 msgid "nur silvestra balo"
-msgstr "xnur silvestra balo"
+msgstr "tylko bal sylwestrowy"
 
 msgid "Bv. indiki la TRANOKTOJN kiam vi partoprenos."
-msgstr "xBv. indiki la TRANOKTOJN kiam vi partoprenos."
+msgstr "Proszę zaznaczyć NOCLEGI, które zamawiasz."
 
 msgid "Matenmanĝoj"
-msgstr "xMatenmanĝoj"
+msgstr "Śniadania "
 
 msgid "Se vi elektas tion vi matenmanĝos post ĉiu via tranokto."
-msgstr "xSe vi elektas tion vi matenmanĝos post ĉiu via tranokto."
+msgstr "Jeśli wybierasz tę opcję, będziesz jadł śniadanie po każdym noclegu."
 
 msgid "Tagmanĝoj"
-msgstr "xTagmanĝoj"
+msgstr "Obiady"
 
-msgid "Se vi elektas tion vi matenmanĝos inter ĉiu via tranokto."
-msgstr "xxSe vi elektas tion vi matenmanĝos inter ĉiu via tranokto."
+msgid "Se vi elektas tion vi tagmanĝos inter ĉiu via tranokto."
+msgstr "Jeśli wybierasz tę opcję, będziesz jadł obiad pomiędzy wszystkimi swoimi noclegami."
 
 msgid "vespermangxoj"
-msgstr "xvespermangxoj"
+msgstr "kolacje"
 
 msgid "Se vi elektas tion vi vespermanĝos antaŭ ĉiu via tranokto."
-msgstr "xSe vi elektas tion vi vespermanĝos antaŭ ĉiu via tranokto."
+msgstr "Jeśli wybierasz tę opcję, będziesz jadłmkolację przed każdym swoim noclegiem."
 
 msgid "Manĝtipo por la silvestra balo"
-msgstr "xManĝtipo por la silvestra balo"
+msgstr "Typ jedzenia podczas balu sylwestrowego"
 
 msgid "Eĉ se vi estas memzorganto, ni bezonas scii vian kutiman manĝtipon por la silvestra balo."
-msgstr "xEĉ se vi estas memzorganto, ni bezonas scii vian kutiman manĝtipon por la silvestra balo."
+msgstr "Nawet jeśli nie wybrałeś wyżywienia podczas całego JESu, chcemy znać twoje preferencje żywieniowe podczas balu sylwestrowego."
 
 msgid "Mi preferas matenmanĝi…"
-msgstr "xMi preferas matenmanĝi…"
+msgstr "Wolę śniadania…"
 
 msgid "ne gravas"
-msgstr "xne gravas"
+msgstr "obojętne"
 
 msgid "dolĉe"
-msgstr "xdolĉe"
+msgstr "słodkie"
 
 msgid "sale"
-msgstr "xsale"
+msgstr "słone"
 
 msgid "Mi volas manĝi…"
-msgstr "xMi volas manĝi…"
+msgstr "Chcę jeść posiłki…"
 
 msgid "viande"
-msgstr "xviande"
+msgstr "mięsne"
 
 msgid "vegetare"
-msgstr "xvegetare"
+msgstr "wegetariańskie"
 
 msgid "vegane"
-msgstr "xvegane"
+msgstr "wegańskie"
 
 msgid "alimeniere/speciale"
-msgstr "xalimeniere/speciale"
+msgstr "inne/specjalne"
 
 msgid "Baze temas pri alergio aŭ trosentemo, ekz. kontraŭ gluteno k.s. Bv. do ĉi tie vortigi, kial kaj kian specialan manĝon vi bezonas."
-msgstr "xBaze temas pri alergio aŭ trosentemo, ekz. kontraŭ gluteno k.s. Bv. do ĉi tie vortigi, kial kaj kian specialan manĝon vi bezonas."
+msgstr "Chodzi głównie o alergie lub nietolerancję, np. glutenu itp. Proszę wpisać tutaj dlaczego i jakich posiłków potrzebujesz."
 
 msgid "Mi volas havi…"
-msgstr "xMi volas havi…"
+msgstr "Chciałbym/chciałabym…"
 
 msgid "Ni planas la menuon laŭ la respondoj, tio estas nur por informiĝi, vi ne nepre ricevos laŭ via elekto"
-msgstr "xNi planas la menuon laŭ la respondoj, tio estas nur por informiĝi, vi ne nepre ricevos laŭ via elekto"
+msgstr "Planujemy posiłki według waszych odpowiedzi, to tylko dla naszej informacji."
 
 msgid "viandon kun viando! (mi volas havi viandaĵon por ĉiu plado)"
-msgstr "xviandon kun viando! (mi volas havi viandaĵon por ĉiu plado)"
+msgstr "mięso z mięsem! (chcę mięso w każdym posiłku)"
 
 msgid "viandon kun aliaj nutraĵoj! (ĉiutage viandon, sed ne nur viandajn pladojn)"
-msgstr "xviandon kun aliaj nutraĵoj! (ĉiutage viandon, sed ne nur viandajn pladojn)"
+msgstr "mięso z innymi pokarmami (każdego dnia mięso, ale nie tylko mięsne potrawy)"
 
 msgid "Mi kontribuos al la ludejo per"
-msgstr "xMi kontribuos al la ludejo per"
+msgstr "Chcę wesprzeć kącik gier poprzez"
 
 msgid "Mi pretas kunporti mia(j)n plej ŝatata(j)n ludilojn por la ludejo."
-msgstr "xMi pretas kunporti mia(j)n plej ŝatata(j)n ludilojn por la ludejo."
+msgstr "Przywiozę ze sobą swoje ulubione gry do kącika gier."
 
 msgid "Mi pretas gvidi ludsesiojn en la ludejo."
-msgstr "xMi pretas gvidi ludsesiojn en la ludejo."
+msgstr "Mogę poprowadzić sesję w kąciku gier."
 
 msgid "Ĉu vi kantas, aŭ ludas iun muzikilon, kiun vi volonte kunportus?"
-msgstr "xĈu vi kantas, aŭ ludas iun muzikilon, kiun vi volonte kunportus?"
+msgstr "Śpiewasz lub grasz i chciałbyś przywieźć swój instrument na JES?"
 
 msgid "Kiel vi volonte uzus vian kantkapablon / muzikilon?"
-msgstr "xKiel vi volonte uzus vian kantkapablon / muzikilon?"
+msgstr "Jak najchętniej używasz swoich muzycznych talentów/instrumentów?"
 
 msgid "Mi ne certas, sed mi volonte ludus aŭ sole, aŭ kune kun kelkaj aliaj dum la semajno"
-msgstr "xMi ne certas, sed mi volonte ludus aŭ sole, aŭ kune kun kelkaj aliaj dum la semajno"
+msgstr "Nie jestem pewny/pewna, ale z przyjemnością zagram solo lub wspólnie z innymi podczas JESu."
 
 msgid "Mi pretas prelegi pri kantado / muzikiloj / muziko / io ajn"
-msgstr "xMi pretas prelegi pri kantado / muzikiloj / muziko / io ajn"
+msgstr "Mogę wygłosić prelekcję o śpiewie/muzyce/instrumentach muzycznych/inne"
 
 msgid "Mi pretas gvidi kurson pri kantado / muzikilludado"
-msgstr "xMi pretas gvidi kurson pri kantado / muzikilludado"
+msgstr "Moge poprowadzić kurs śpiewu/gry na instrumencie"
 
 msgid "Mi pretas fari 20-30 minutan gufujan koncerteton"
-msgstr "xMi pretas fari 20-30 minutan gufujan koncerteton"
+msgstr "Mogę zagrać 20-30 minutowy koncert w herbaciarni"
 
 msgid "Mi pretas aŭ sole, aŭ kun aliaj (propra muzikgrupo, spontanea ludado ktp.) fari 45-60 minutan koncerton, kiel vespera programo"
-msgstr "xMi pretas aŭ sole, aŭ kun aliaj (propra muzikgrupo, spontanea ludado ktp.) fari 45-60 minutan koncerton, kiel vespera programo"
+msgstr "Mogę zorganizować 45-60 minutowy koncert jako program wieczorny (solo lub z własnym zespołem, spontaniczną grupą muzyczną itp.)"
 
 msgid "Detaloj de artisto/muzikgrupo"
-msgstr "xDetaloj de artisto/muzikgrupo"
+msgstr "Szczegóły o artyście/grupie muzycznej"
 
 msgid "Nomo, kiom longe la koncerto daŭros, kiajn teĥnikaĵojn vi bezonas ktp."
-msgstr "xNomo, kiom longe la koncerto daŭros, kiajn teĥnikaĵojn vi bezonas ktp."
+msgstr "Nazwa, jak długo potrwa koncert, jakie wsparcie techniczne jest ci potrzebne itp."
 
 msgid "Kiun muzikilon vi kunportos"
-msgstr "xKiun muzikilon vi kunportos"
+msgstr "Jakie instrumenty muzyczne przywieziesz z sobą"
 
 msgid "Gitaron"
-msgstr "xGitaron"
+msgstr "gitarę"
 
 msgid "Violonon"
-msgstr "xViolonon"
+msgstr "skrzypce"
 
 msgid "Transversan fluton"
-msgstr "xTransversan fluton"
+msgstr "flet poprzeczny"
 
 msgid "Bekfluton"
-msgstr "xBekfluton"
+msgstr "flet prosty"
 
 msgid "Ukulelon"
-msgstr "xUkulelon"
+msgstr "ukulele"
 
 msgid "Alian muzikilon"
-msgstr "xAlian muzikilon"
+msgstr "inny instrument"
 
 msgid "Mi ankoraŭ ne decidis, sed mi certe kunportos ion"
-msgstr "xMi ankoraŭ ne decidis, sed mi certe kunportos ion"
+msgstr "Jeszcze nie zdecydowałem/-łam, ale z pewnością coś przywiozę."
 
 msgid "Mi proponas"
-msgstr "xMi proponas"
+msgstr "Mogę"
 
 msgid "deĵori en la gufujo"
-msgstr "xdeĵori en la gufujo"
+msgstr "dyżurować w herbaciarni"
 
 msgid "deĵori en la trinkejo"
-msgstr "xdeĵori en la trinkejo"
+msgstr "dyżurować w barze"
 
 msgid "Ĝenarala helpado"
-msgstr "xĜenarala helpado"
+msgstr "Ogólna pomoc"
 
 msgid "Se vi volonte helpos al ni pri ĝeneralaj taskoj bv. ĉi tie indiki (ekzemple per pakado de tabloj en la ejo, gvidado de la grupo al la ekstera halo)."
-msgstr "xSe vi volonte helpos al ni pri ĝeneralaj taskoj bv. ĉi tie indiki (ekzemple per pakado de tabloj en la ejo, gvidado de la grupo al la ekstera halo)."
+msgstr "Jeśli masz ochotę pomóc nam przy ogólnych zadaniach, wpisz tutaj (np. noszenie stołów, prowadzenie grupy do zewnętrznego holu itp.)"
 
 msgid "Programkontribuo"
-msgstr "xProgramkontribuo"
+msgstr "Wsparcie programu"
 
 msgid "Se vi ŝatus fari programeron, bv. skribu ĉi tien mallonge vian proponon! Vi ricevos retleteron de la organizantoj responde al via propono."
-msgstr "xSe vi ŝatus fari programeron, bv. skribu ĉi tien mallonge vian proponon! Vi ricevos retleteron de la organizantoj responde al via propono."
+msgstr "Jeśli masz ochotę zrobić wsłasny program, wpisz tutaj swoją propozycję! Otrzymasz maila z odpowiedzią organizatorów na twoją propozycję."
 
 msgid "Pagado"
-msgstr "xPagado"
+msgstr "Płatność"
 
 msgid "UEA-konto (jesm-f)"
-msgstr "xUEA-konto (jesm-f)"
+msgstr "konto-UEA (jesm-f)"
 
 msgid "la hungara konto"
-msgstr "xla hungara konto"
+msgstr "węgierskie konto bankowe"
 
 msgid "la pola konto"
-msgstr "xla pola konto"
+msgstr "polskie konto bankowe"
 
 msgid "Mi ŝatus donaci al JES 2015…"
-msgstr "xMi ŝatus donaci al JES 2015…"
+msgstr "Chciałbym/chciałabym podarować JES-owi …"
 
 msgid "entajpu sumon (en eŭroj)"
-msgstr "xentajpu sumon (en eŭroj)"
+msgstr "wpisz sumę (w euro)"
 
 msgid "Se vi ŝatus subteni la eventon per iom da mono, ĝi certe bonvenas. :) Vi eĉ povas indiki, por kia celo ni elspezu ĝin!"
-msgstr "xSe vi ŝatus subteni la eventon per iom da mono, ĝi certe bonvenas. :) Vi eĉ povas indiki, por kia celo ni elspezu ĝin!"
+msgstr "Jeśli chcesz wesprzeć zjazd pieniężnie, zapraszamy! Możesz nawet wpisać cel, na który twoje pieniądze mają zostać użyte!"
 
 msgid "Mi ŝatus donaci por"
-msgstr "xMi ŝatus donaci por"
+msgstr "Chcę wesprzeć"
 
 msgid "subteni malriĉajn junajn partoprenantojn"
-msgstr "xsubteni malriĉajn junajn partoprenantojn"
+msgstr "ubogicz młodych uczestników"
 
 msgid "pli riĉigan programon"
-msgstr "xpli riĉigan programon"
+msgstr "bogatszy program JESu"
 
 msgid "alia"
-msgstr "xalia"
+msgstr "inne"
 
 msgid "Bv klarigi."
-msgstr "xBv klarigi."
+msgstr "Wyjaśnij"
 
 msgid "Kalkulita kotizo"
-msgstr "xKalkulita kotizo"
+msgstr "Wyliczony koszt"
 
 msgid "Ene de la nuna aliĝperiodo mi pagos.."
-msgstr "xEne de la nuna aliĝperiodo mi pagos.."
+msgstr "W obecnym okresie zapisów wpłacę…"
 
 msgid "Se vi pagos la tutan kotizon ĝis la 31-a de aŭgusto, vi ricevos rabaton je 5€"
-msgstr "xSe vi pagos la tutan kotizon ĝis la 31-a de aŭgusto, vi ricevos rabaton je 5€"
+msgstr "Jeśli wpłacisz całą sumę do 31 sierpnia, otrzymasz rabat w wysokości 5€"
 
 msgid "tutan sumon por helpi en organizado kaj ĝui 5-eŭran rabaton"
-msgstr "xtutan sumon por helpi en organizado kaj ĝui 5-eŭran rabaton"
+msgstr "całkowita kwota by pomóc organizatorom i uzyskać 5-cio eurowy  rabat"
 
 msgid "nur necesan antaŭpagon (40 eŭr)"
-msgstr "xnur necesan antaŭpagon (40 eŭr)"
+msgstr "tylko konieczna zaliczka (40€)"
 
 msgid "Komento"
-msgstr "xKomento"
+msgstr "Komentarz"
 
 msgid "Ĉi tie vi povas lasi mesaĝon al la organizantoj aŭ aldoni komentojn al via aliĝo! Dankon!"
-msgstr "xĈi tie vi povas lasi mesaĝon al la organizantoj aŭ aldoni komentojn al via aliĝo! Dankon!"
+msgstr "Tutaj możesz zostawić wiadomość dla organizatorów lub dodać komentarz do swojego zgłoszenia. Dziękujemy!"
 
 msgid "Mi akceptas la regularon de la aranĝo"
-msgstr "xMi akceptas la regularon de la aranĝo"
+msgstr "Akceptuję regulamin zjazdu"
 
 msgid "vi devas akcepti la regularon!"
-msgstr "xvi devas akcepti la regularon!"
+msgstr "Musisz zaakceptować regulamin!"
 
 msgid "aliĝu!"
-msgstr "Zapisz się!"
+msgstr "zapisz się!"
 
 msgid "bv. plenigi la formularon por kalkuli kotizon!"
-msgstr "proszę wypełnić formularz aby obliczyć koszty!"
+msgstr "Wypełnij formularz by wyliczyć koszty!"
 
 msgid "Programkotizo"
-msgstr "xProgramkotizo"
+msgstr "Opłata programowa"
 
 msgid "Matenmanĝoj"
-msgstr "xMatenmanĝoj"
+msgstr "Śniadania"
 
 msgid "Tagmanĝoj"
-msgstr "xTagmanĝoj"
+msgstr "Obiady"
 
 msgid "Tagmanĝoj"
-msgstr "xTagmanĝoj"
+msgstr "Obiady"
 
 msgid "Vespermanĝoj"
-msgstr "xVespermanĝoj"
+msgstr "Kolacje"
 
 msgid "Ĉambro kun propra duŝejo"
-msgstr "xĈambro kun propra duŝejo"
+msgstr "Pokój z własnym prysznicem"
 
 msgid "Dulita krompago"
-msgstr "xDulita krompago"
+msgstr "Opłata dodatkowa za dwuosobowy pokój"
 
 msgid "Ĉambro kun propra duŝejo (4-6 persona)"
-msgstr "xĈambro kun propra duŝejo (4-6 persona)"
+msgstr "Pokój z własnym prysznicem (4-6-cio osobowy)"
 
 msgid "Ĉambro kun koridora duŝejo"
-msgstr "xĈambro kun koridora duŝejo"
+msgstr "Pokój z prysznicem na korytarzu"
 
 msgid "Amasejo"
-msgstr "xAmasejo"
+msgstr "Sala wspólna"
 
 msgid "Invitletero"
-msgstr "xInvitletero"
+msgstr "Zaposzenie"
 
 msgid "Imposto por hungara ŝtato"
-msgstr "xImposto por hungara ŝtato"
+msgstr "Podatek dla państwa węgierskiego"
 
 msgid "Balokotizo"
-msgstr "xBalokotizo"
+msgstr "Koszt balu sylwestrowego"
 
 msgid "Donaco al JES 2015"
-msgstr "xDonaco al JES 2015"
+msgstr "Darowizna na rzecz JESu 2015"
 
 msgid "Rabato pro bonvola tuja tuta pago (dankon!)"
-msgstr "xRabato pro bonvola tuja tuta pago (dankon!)"
+msgstr "Rabat za wpłatę całej sumy (dziękujemy!)"
 
 msgid "%d foje %.2f€"
-msgstr "x%d foje %.2f€"
+msgstr "%d foje %.2f€"
 
 msgid "Sume:"
-msgstr "xSume:"
+msgstr "w sumie:"
 
 msgid "okazis eraroj dum via aliĝo - bv. korekti ilin"
-msgstr "xokazis eraroj dum via aliĝo - bv. korekti ilin"
+msgstr "podczas wypełniania wystąpiły błędy - proszę, popraw je teraz"
 
 msgid "tiu ĉi kampo estas deviga"
-msgstr "xtiu ĉi kampo estas deviga"
+msgstr "to okno jest wymagane"
 
 msgid "nenio estis elektita"
-msgstr "xnenio estis elektita"
+msgstr "nic nie zostało wybrane"
 
 msgid "malkorekta formo de dato"
-msgstr "xmalkorekta formo de dato"
+msgstr "błędnie wpisana data"
 
 msgid "Personaj datumoj"
-msgstr "xPersonaj datumoj"
+msgstr "Dane osobowe "
 
 msgid "Loĝado"
-msgstr "xLoĝado"
+msgstr "Zakwaterowanie"
 
 msgid "Manĝado"
-msgstr "xManĝado"
+msgstr "Wyżywienie"
 
 msgid "Pagado"
-msgstr "xPagado"
+msgstr "Płatność"
 
 msgid "Dum la aranĝo"
-msgstr "xDum la aranĝo"
+msgstr "Podczas zjazdu"
 
 msgid "Komento kaj regularo"
-msgstr "xKomento kaj regularo"
+msgstr "Komentarz i regulamin"
 
 msgid "JES estas renkontiĝo, kie ricevas centran rolon la kontribuoj de la partoprenantoj. Tiu ĉi renkontiĝo estas por vi. La organizantoj donas la strukturon de la programoj, kaj la partoprenantoj kontribuas al la programeroj dum la semajno ne nur per la ĉeestado. Ni petas vin pripensi kiel vi povas mojosigi la etoson!"
-msgstr "xJES estas renkontiĝo, kie ricevas centran rolon la kontribuoj de la partoprenantoj. Tiu ĉi renkontiĝo estas por vi. La organizantoj donas la strukturon de la programoj, kaj la partoprenantoj kontribuas al la programeroj dum la semajno ne nur per la ĉeestado. Ni petas vin pripensi kiel vi povas mojosigi la etoson!"
+msgstr "JES jest spotkaniem podczas którego wsparcie uczestników jest bardzo ważne. To spotkanie jest dla was. Organizatorzy zapewniają szkielet programu, ale to uczestniczy wypełniają go treścią nie tylko biorąc w nim udział. Przemyśl, w jaki sposób ty możesz się przyczynić do ubogacenia naszego programu. "
 
 msgid "Saluton! Dankon por via aliĝo al JES en Eger, Hungario!"
-msgstr "xSaluton! Dankon por via aliĝo al JES en Eger, Hungario!"
+msgstr "Cześć! Dziękujemy, że dołączyłeś/-łaś do JESu w Eger na Węgrzech!"
 
 msgid "Sube vi vidas viajn datumojn. Bv. relegi kaj nepre skribu al jes@pej.pl se io ne ĝustas, aŭ intertempe ŝanĝiĝas viaj mendoj. Tion vi povas fari ĝis la 1-a de decembro.<br/> Se vi ne ricevis konfirmon de la aliĝo, bv. kontroli vian retpoŝtan spamujon!<br/> Amike,<br/>la teamo de JES"
-msgstr "xSube vi vidas viajn datumojn. Bv. relegi kaj nepre skribu al jes@pej.pl se io ne ĝustas, aŭ intertempe ŝanĝiĝas viaj mendoj. Tion vi povas fari ĝis la 1-a de decembro.<br/> Se vi ne ricevis konfirmon de la aliĝo, bv. kontroli vian retpoŝtan spamujon!<br/> Amike,<br/>la teamo de JES"
+msgstr "Pod spodem widoczne są twoje dane. Przeczytaj je ponownie, jeśli coś się nie zgadza lub zmieniłeś/-łaś zdanie w jakiejś kwestii, koniecznie napisz na jes@pej.pl. Możesz to zrobić do 1 grudnia. <br/> Jeśli nie otrzymałeś/-łaś potwierdzenia swojego zgłoszenia, sprawdź skrzynkę ze spamem!<br/> z pozdrowieniami,<br/>organizatorzy JESu 2015"
 
 msgid "yes"
 msgstr "tak"
@@ -475,22 +486,22 @@ msgid "(nothing)"
 msgstr "(nic)"
 
 msgid "bv. elekti landon"
-msgstr "xbv. elekti landon"
+msgstr "wybierz kraj"
 
 msgid "Legu pli pri la pagadosistemo ĉi tie."
-msgstr "xLegu pli pri la pagadosistemo ĉi tie."
+msgstr "Więcej informacji o systemie płatności tutaj."
 
 msgid "jes - nomo kaj familanomo"
-msgstr "xjes - nomo kaj familanomo"
+msgstr "tak - imię i nazwisko"
 
 msgid "jes - nur nomo"
-msgstr "xjes - nur nomo"
+msgstr "tak - tylko imię"
 
 msgid "Listo de aliĝintoj"
-msgstr "xListo de aliĝintoj"
+msgstr "Lista zapisanych osób"
 
 msgid "Ĉu vi volas aperi en la listo de aliĝintoj?"
-msgstr "xĈu vi volas aperi en la listo de aliĝintoj?"
+msgstr "Czy chcesz pojawić się na liście zapisanych?"
 
 msgid "La regularo legeblas ĉi tie"
-msgstr "xLa regularo legeblas ĉi tie"
+msgstr "Regulamin możesz przeczytać tutaj."

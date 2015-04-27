@@ -21,7 +21,8 @@ object JES2015 extends Controller {
 
   implicit val poCfg = PoCfg.fromResources(getClass,
     "eo" -> "/jes2015_eo.po",
-    "pl" -> "/jes2015_pl.po"
+    "pl" -> "/jes2015_pl.po",
+    "hu" -> "/jes2015_hu.po"
   )
 
   def index(implicit lang: Lang = "eo") = Action {

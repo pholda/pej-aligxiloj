@@ -171,11 +171,11 @@ msgstr "Se vi elektas tion vi matenmanĝos post ĉiu via tranokto."
 msgid "Tagmanĝoj"
 msgstr "Tagmanĝoj"
 
-msgid "Se vi elektas tion vi matenmanĝos inter ĉiu via tranokto."
-msgstr "Se vi elektas tion vi matenmanĝos inter ĉiu via tranokto."
+msgid "Se vi elektas tion vi tagmanĝos inter ĉiu via tranokto."
+msgstr "Se vi elektas tion vi tagmanĝos inter ĉiu via tranokto."
 
 msgid "vespermangxoj"
-msgstr "vespermangxoj"
+msgstr "vespermanĝoj"
 
 msgid "Se vi elektas tion vi vespermanĝos antaŭ ĉiu via tranokto."
 msgstr "Se vi elektas tion vi vespermanĝos antaŭ ĉiu via tranokto."
@@ -247,7 +247,7 @@ msgid "Mi ne certas, sed mi volonte ludus aŭ sole, aŭ kune kun kelkaj aliaj du
 msgstr "Mi ne certas, sed mi volonte ludus aŭ sole, aŭ kune kun kelkaj aliaj dum la semajno"
 
 msgid "Mi pretas prelegi pri kantado / muzikiloj / muziko / io ajn"
-msgstr "Mi pretas prelegi pri kantado / muzikiloj / muziko / io ajn"
+msgstr "Mi pretas prelegi pri kantado / muzikiloj / muziko / aŭ io simile"
 
 msgid "Mi pretas gvidi kurson pri kantado / muzikilludado"
 msgstr "Mi pretas gvidi kurson pri kantado / muzikilludado"
@@ -497,3 +497,6 @@ msgstr "Ĉu vi volas aperi en la listo de aliĝintoj?"
 
 msgid "La regularo legeblas ĉi tie"
 msgstr "La regularo legeblas ĉi tie"
+
+msgid "Lando"
+msgstr "Lando"

@@ -83,8 +83,11 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
       }
     },
     store = false,
-    `type` = CustomCalculateField[String]{form =>
-      Some("Vi estos sub 18 dum la JES, vi bezonas sendi skanitan gepatran permesilon al la organizantoj pri via partopreno, se vi venos sole al la renkontiĝo.")
+    `type` = CustomCalculateField[PrintableCalculateFieldValue]{form =>
+      Some(new PrintableCalculateFieldValue{
+        override def str(implicit lang: Lang, poCfg: PoCfg): String =
+          I18n.t("Vi estos sub 18 dum la JES, vi bezonas sendi skanitan gepatran permesilon al la organizantoj pri via partopreno, se vi venos sole al la renkontiĝo.")
+      })
     }
   )
   val genro = Field(
@@ -350,7 +353,7 @@ class Jes2015Aligxilo(rawFieldValue: Field[_] => Seq[String], val isFilled: Bool
   val tagmangxoj = Field(
     name = "tagmangxoj",
     caption = I18n.po("Tagmanĝoj"),
-    description = Some(I18n.po("Se vi elektas tion vi matenmanĝos inter ĉiu via tranokto.")),
+    description = Some(I18n.po("Se vi elektas tion vi tagmanĝos inter ĉiu via tranokto.")),
     `type` = CheckboxField(default = true)
   )
   val vespermangxoj = Field(

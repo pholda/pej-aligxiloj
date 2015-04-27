@@ -26,6 +26,8 @@
                     Html(s"""<script type="text/javascript" src="${routes.Assets.at("jquery-ui-1.11.2.custom/i18n/datepicker-eo.js")}"></script>""")
                 case "pl" =>
                     Html(s"""<script type="text/javascript" src="${routes.Assets.at("jquery-ui-1.11.2.custom/i18n/datepicker-pl.js")}"></script>""")
+                case "hu" =>
+                    Html(s"""<script type="text/javascript" src="${routes.Assets.at("jquery-ui-1.11.2.custom/i18n/datepicker-hu.js")}"></script>""")
                 case _ =>
             }
         }
@@ -46,7 +48,7 @@
         </script>
         <script type="text/javascript" src="/assets/javascripts/jes2015-fastopt.js"></script>
         @jes2015po()
-        <div id="lingvoj"><a href="@routes.JES2015.index("eo")">Esperanto</a> | <a href="@routes.JES2015.index("pl")">polski</a></div>
+        <div id="lingvoj"><a href="@routes.JES2015.index("eo")">Esperanto</a> | <a href="@routes.JES2015.index("hu")">magyar</a> | <a href="@routes.JES2015.index("pl")">polski</a></div>
         <p class="titolo text-center">JES 2015</p>
         @if(form.hasErrors) {
             <div class="error text-center">@i18n("okazis eraroj dum via aliĝo - bv. korekti ilin")</div>
@@ -127,7 +129,7 @@
             @field(form.programkontribuo)
             <div class="row">
                 <h1>@i18n("Komento kaj regularo")</h1>
-                <h4><a href="#">@i18n("La regularo legeblas ĉi tie")</a></h4>
+                <h4><a href="http://jes.pej.pl/2015/?page_id=4">@i18n("La regularo legeblas ĉi tie")</a></h4>
             </div>
             @field(form.komento)
 
@@ -143,7 +145,7 @@
                 <div class="col-sm-12">
                     <strong>@i18n("Kalkulita kotizo"):</strong>
                     <span data-name="kotizo" class="formExpression"></span>
-                    <br><a href="#">@i18n("Legu pli pri la pagadosistemo ĉi tie.")</a>
+                    <br><a href="http://jes.pej.pl/2015/?page_id=42">@i18n("Legu pli pri la pagadosistemo ĉi tie.")</a>
                 </div>
             </div>
         </div>
