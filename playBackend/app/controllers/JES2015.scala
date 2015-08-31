@@ -22,7 +22,8 @@ object JES2015 extends Controller {
   implicit val poCfg = PoCfg.fromResources(getClass,
     "eo" -> "/jes2015_eo.po",
     "pl" -> "/jes2015_pl.po",
-    "hu" -> "/jes2015_hu.po"
+    "hu" -> "/jes2015_hu.po",
+    "fr" -> "/jes2015_fr.po"
   )
 
   def index(implicit lang: Lang = "eo") = Action {
@@ -62,16 +63,23 @@ object JES2015 extends Controller {
 
         val sendMail = SendMailFormAction[Jes2015Aligxilo](
           subject = f => s"Aliĝo al JES 2015 en Eger, Hungario - ${f.personaNomo.value.get}",
-          from = "JES-teamo <jes@pej.pl>",
+//          from = "JES-teamo <jes@pej.pl>",
+          from = "Aligxilo <aligxilo@aligxilo.pholda.pl>",
           to = f => Seq(
             s"${f.personaNomo.value.get} <${f.retposxtadreso.value.get}>"
           ),
           bcc = Seq(
             "<hej.estraro@gmail.com>",
             "<tomasz.szymula@pej.pl>",
-            "<piotr.holda@pej.pl>"
+            "<piotr.holda@pej.pl>",
+            "Tobiasz Kubisiowski <tobiasz.kubisiowski@pej.pl>"
           ),
-          html = html.jes2015_aligxilo_mesagxo(form, lang, poCfg).body
+          html = html.jes2015_aligxilo_mesagxo(form, lang, poCfg).body,
+          headers = Seq(
+            "DKIM-Signature" -> ("v=1;a=rsa;d=aligxilo.pholda.pl;s=brisbane;" +
+            "c=relaxed/simple;q=dns/txt;l=1234; t=1117574938; x=1118006938;" +
+            "h=from:to:subject:date;bh=MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=;b=dzdVyOfAKCdLXdJOc9G2q8LoXSlEniSbav+yuU4zGeeruD00lszZVoG4ZHRNiYzR")
+          )
         )
 
         mongoInsert.run(form)

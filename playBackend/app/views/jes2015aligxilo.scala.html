@@ -28,6 +28,8 @@
                     Html(s"""<script type="text/javascript" src="${routes.Assets.at("jquery-ui-1.11.2.custom/i18n/datepicker-pl.js")}"></script>""")
                 case "hu" =>
                     Html(s"""<script type="text/javascript" src="${routes.Assets.at("jquery-ui-1.11.2.custom/i18n/datepicker-hu.js")}"></script>""")
+                case "fr" =>
+                    Html(s"""<script type="text/javascript" src="${routes.Assets.at("jquery-ui-1.11.2.custom/i18n/datepicker-fr.js")}"></script>""")
                 case _ =>
             }
         }
@@ -48,7 +50,7 @@
         </script>
         <script type="text/javascript" src="/assets/javascripts/jes2015-fastopt.js"></script>
         @jes2015po()
-        <div id="lingvoj"><a href="@routes.JES2015.index("eo")">Esperanto</a> | <a href="@routes.JES2015.index("hu")">magyar</a> | <a href="@routes.JES2015.index("pl")">polski</a></div>
+        <div id="lingvoj"><a href="@routes.JES2015.index("eo")">esperanto</a> | <a href="@routes.JES2015.index("fr")">français</a> | <a href="@routes.JES2015.index("hu")">magyar</a> | <a href="@routes.JES2015.index("pl")">polski</a></div>
         @*<p class="titolo text-center">JES 2015</p>*@
         @if(form.hasErrors) {
             <div class="error text-center">@i18n("okazis eraroj dum via aliĝo - bv. korekti ilin")</div>

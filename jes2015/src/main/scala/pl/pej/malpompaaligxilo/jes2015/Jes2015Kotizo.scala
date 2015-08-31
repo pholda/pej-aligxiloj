@@ -72,8 +72,8 @@ object Jes2015Kotizo {
 
         val aligxkategoriajPrezoj: Seq[Seq[Euroj]] = if (currentDate < form.dates.fromString("2015-04-30")) Prezoj.IJF
         else if (currentDate < form.dates.fromString("2015-06-30")) Prezoj.IJS
-        else if (currentDate < form.dates.fromString("2015-08-31")) Prezoj.finoDeSomero
-        else if (currentDate < form.dates.fromString("2015-10-31")) Prezoj.novembro
+        else if (currentDate <= form.dates.fromString("2015-09-14")) Prezoj.finoDeSomero
+        else if (currentDate <= form.dates.fromString("2015-10-31")) Prezoj.novembro
         else Prezoj.decembro
 
         val naskiita = form.dates.fromString(naskigxdato.value.get.toString)
@@ -88,7 +88,7 @@ object Jes2015Kotizo {
         val aLandoj = Seq("ad", "at", "bh", "be", "gb", "dk", "fi", "fr", "de", "ie", "is", "il", "it", "jp", "ca", "qa", "kw", "li", "lu", "mc", "nl", "no", "om", "sm", "sa", "se", "ch", "ae", "us")
 
         val bLandoj = Seq(
-          "al", "au", "ba", "bn", "bg", "cz", "ee", "gr", "es", "hu", "cy", "hr", "lt", "lv", "mk", "mt", "me", "nz", "pl", "pt", "ru", "rs", "sg", "sk", "si", "kr", "tw", "tr")
+          "al", "au", "ba", "bn", "bg", "cz", "ee", "gr", "es", "hu", "cy", "hr", "lt", "lv", "mk", "mt", "me", "nz", "pl", "pt", "ro", "rs", "sg", "sk", "si", "kr", "tw", "tr")
 
         val landoKategorio = if (aLandoj.contains(lando)) 0 else if (bLandoj.contains(lando)) 1 else 2
 

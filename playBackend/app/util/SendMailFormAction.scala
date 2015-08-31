@@ -11,7 +11,8 @@ case class SendMailFormAction[F <: Form](
   html: F => String,
   cc: F => Seq[String] = (f: F) => Nil,
   bcc: F => Seq[String] = (f: F) => Nil,
-  attachments: F => Seq[Attachment] = (f: F) => Nil
+  attachments: F => Seq[Attachment] = (f: F) => Nil,
+  headers: F => Seq[(String, String)] = (f :F) => Seq.empty
                                )(implicit val app: Application) extends FormAction[F] {
   override def run(form: F): Unit = {
     val email = Email(
@@ -22,7 +23,8 @@ case class SendMailFormAction[F <: Form](
       charset = Some("UTF-8"),
       cc = cc(form),
       bcc = bcc(form),
-      attachments = attachments(form)
+      attachments = attachments(form),
+      headers = headers(form)
     )
 
     MailerPlugin.send(email)(app)
